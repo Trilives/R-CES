@@ -1,4 +1,4 @@
-R-CES benchmark data — Copyright (c) 2026 The R-CES authors
+R-CES benchmark data — Copyright (c) 2026 Xingpeng Jiang and Boran Wang
 
 The contents of `data/` (annotations, IAA report, rule library, splits) and the
 annotation codebook (`codebook.md`) are licensed under the Creative Commons

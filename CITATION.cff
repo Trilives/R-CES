@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this benchmark or code, please cite the paper."
+title: "R-CES: checkpoint-level decidability benchmark and evidence-sufficiency scoring"
+type: software
+authors:
+  - family-names: Jiang
+    given-names: Xingpeng
+    affiliation: "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen"
+  - family-names: Wang
+    given-names: Boran
+    affiliation: "International Artificial Intelligence Research Institute, Harbin Institute of Technology, Shenzhen"
+repository-code: "https://github.com/Trilives/R-CES"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - selective prediction
+  - evidence sufficiency
+  - visual compliance
+  - vision-language models
+  - benchmark
+preferred-citation:
+  type: conference-paper
+  title: "When Is an Image Enough? A Checkpoint-Level Decidability Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance"
+  authors:
+    - family-names: Jiang
+      given-names: Xingpeng
+    - family-names: Wang
+      given-names: Boran
+  collection-title: "Proceedings of the Asian Conference on Machine Learning (ACML)"
+  publisher:
+    name: "PMLR"
+  year: 2026

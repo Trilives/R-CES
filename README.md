@@ -131,6 +131,20 @@ anchor the gold labels; `codebook.md` is the authoritative manual. Gold (`source
 (`source=model_full`) share one record shape (`rces_final_annotations.schema.json`)
 but live in two physical files so the baseline can never contaminate gold.
 
+## Citation
+
+```bibtex
+@inproceedings{jiang2026rces,
+  title     = {When Is an Image Enough? A Checkpoint-Level Decidability Benchmark and
+               Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance},
+  author    = {Jiang, Xingpeng and Wang, Boran},
+  booktitle = {Proceedings of the Asian Conference on Machine Learning (ACML)},
+  series    = {Proceedings of Machine Learning Research},
+  publisher = {PMLR},
+  year      = {2026}
+}
+```
+
 ## License
 
 Code and documentation: [MIT](LICENSE). Annotations, rule library, splits, IAA

@@ -117,8 +117,8 @@ selects one. A remote OpenAI-compatible (vLLM) endpoint is supported via
 
 ## Data integrity
 
-`sha256sum -c data/SHA256SUMS` checks every shipped data file against the hashes
-the reported results were produced from. `uv run python tmp/validate_rces_pairs.py` checks rule-id existence,
+`sha256sum -c data/SHA256SUMS` checks every shipped data file. The annotation,
+rule and split files are byte-identical to the inputs of the reported results. `uv run python tmp/validate_rces_pairs.py` checks rule-id existence,
 observed/missing ⊆ a rule's required checkpoints (and disjoint), the
 critical-missing relation, schema consistency, and a model→gold leak guard. It
 exits non-zero on any error. The shipped data passes with 0 errors / 0 warnings.

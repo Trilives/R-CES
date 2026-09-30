@@ -7,7 +7,7 @@ This repository is a standalone `uv` project.
 ```bash
 uv sync
 UV_CACHE_DIR=/tmp/uv-cache uv run python tmp/validate_rces_pairs.py
-UV_CACHE_DIR=/tmp/uv-cache uv run python -m unittest tests/test_offline_experiment_boundary.py tests/test_experiment_matrix.py tests/test_retrieval.py
+UV_CACHE_DIR=/tmp/uv-cache uv run python -m unittest tests/test_offline_experiment_boundary.py tests/test_experiment_matrix.py tests/test_retrieval.py tests/test_evaluate_scores.py
 ```
 
 The full GPU workflow additionally requires the omitted image directory and

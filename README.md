@@ -27,6 +27,20 @@ Labels are human-only: no model output is shown during annotation or used as gol
 The annotation protocol is `codebook.md`; the κ report and the 19-pair
 disagreement list are `data/pairs/iaa_report.json`.
 
+## Evaluate your own predictor
+
+No images or GPU needed to score predictions. List the 267 test pairs, add a score per pair
+(higher = more likely the image suffices to decide the rule), and score them:
+
+```bash
+uv run python experiments/evaluate_scores.py          # writes experiments/artifacts/test_pairs.jsonl
+RCES_SCORES=my_scores.jsonl uv run python experiments/evaluate_scores.py
+```
+
+It reports pooled AUROC, AURC and within-rule AUROC on all test pairs and on the 217
+visual/normative pairs. Within-rule AUROC compares pairs only inside a rule, so a scorer that
+reads only the rule text gets 0.5; report it next to pooled AUROC.
+
 ## Layout
 
 ```
@@ -50,6 +64,7 @@ experiments/         offline experiments (human gold only)
   data/              feature encoding (SigLIP2 / DINOv2) + split construction
   figures/           data-driven paper figure (calibration reliability diagrams)
   determinism.py     deterministic-training helper (math SDPA, seeded)
+  evaluate_scores.py score any predictor's pair scores on the test split
 Script/              annotation pipeline (LAN web UI, GPT description, model baseline)
 Prompt/              English prompts (annotation, description, baselines, self-eval)
 tests/               syntax/interface/boundary checks (not a pytest suite)

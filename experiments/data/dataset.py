@@ -15,6 +15,8 @@ Ablation hooks (config flags resolved at build time):
 
 from __future__ import annotations
 
+import random
+
 import json
 from dataclasses import dataclass
 from typing import Any
@@ -84,12 +86,27 @@ class PairRecord:
     critical_missing_gold: tuple[str, ...]
 
 
+def _rule_allowed(rule_id: str) -> bool:
+    """Honour config.RULE_FILTER so a fold can train and test on disjoint rules."""
+    rule_filter = config.RULE_FILTER
+    if rule_filter is None:
+        return True
+    mode, rule_ids = rule_filter
+    if mode == "exclude":
+        return rule_id not in rule_ids
+    if mode == "include":
+        return rule_id in rule_ids
+    raise ValueError(f"RULE_FILTER mode must be exclude or include; got {mode!r}")
+
+
 def build_pair_records(image_ids: set[str]) -> list[PairRecord]:
     """Locked-gold pairs whose image is in `image_ids`, as pair-level records."""
     rules = exp_io.rio.load_rules()
     records: list[PairRecord] = []
     for pair in exp_io.load_locked_gold():
         if pair["image_id"] not in image_ids:
+            continue
+        if not _rule_allowed(pair["rule_id"]):
             continue
         rule = rules.get(pair["rule_id"], {})
         targets = exp_io.resolvable_targets(pair, rule)
@@ -171,6 +188,20 @@ class RCESDataset(Dataset):
         image_ids = {ex.image_id for ex in examples}
         self.images = load_image_features(image_ids)
         self.ckpt_text = load_checkpoint_text()
+        # Shuffled-image control: deterministically re-assign each pair's image to
+        # another image in the same evaluation set. Preserves the image marginal
+        # and every rule-side field, so any AUROC drop is attributable to the
+        # image->pair correspondence alone.
+        self.image_permutation: dict[str, str] = {}
+        if config.SHUFFLE_IMAGE_EVAL:
+            ordered = sorted(image_ids)
+            rng = random.Random(config.SHUFFLE_IMAGE_SEED)
+            shuffled = ordered[:]
+            for _ in range(100):
+                rng.shuffle(shuffled)
+                if all(a != b for a, b in zip(ordered, shuffled)) or len(ordered) < 2:
+                    break
+            self.image_permutation = dict(zip(ordered, shuffled))
 
     def __len__(self) -> int:
         return len(self.examples)
@@ -189,7 +220,8 @@ class RCESDataset(Dataset):
         return self.ckpt_text[ex.text_id]
 
     def _patches(self, ex: Example) -> torch.Tensor:
-        return self.images[ex.image_id]  # [N_patch, D_img]
+        image_id = self.image_permutation.get(ex.image_id, ex.image_id)
+        return self.images[image_id]  # [N_patch, D_img]
 
     def __getitem__(self, index: int) -> dict[str, Any]:
         ex = self.examples[index]

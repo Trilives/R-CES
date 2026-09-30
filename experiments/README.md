@@ -312,6 +312,38 @@ test  <- realistic_test_images.txt
 
 Use the official mode only after those splits have enough locked human labels.
 
+## Paper analyses (10 seeds)
+
+Every multi-seed number in the paper comes from one of these scripts, run with
+
+```bash
+RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
+RCES_N_SEEDS=10 RCES_LOCAL_QWEN_MODEL=Qwen3.5-9B CUBLAS_WORKSPACE_CONFIG=:4096:8 \
+UV_CACHE_DIR=/tmp/uv-cache uv run python <script>
+```
+
+(for the backbone table, also set `RCES_VISION_ENCODER` to each encoder). Outputs land in
+`experiments/artifacts/` with the `_cropaug` tag.
+
+| paper | script | artifact |
+|---|---|---|
+| Tab 1 (IAA) | `tmp/compute_iaa.py` | `cache/iaa_report.json` (κ per field + disagreement list) |
+| Tab 2: v1 and shuffled-image CIs | `ablation/hierarchical_ci.py` → `ablation/recompute_ci.py` | `hierarchical_frames_cropaug.json` → `within_stratum_ci_cropaug.json` |
+| Tab 2: text-only / image-only; crops vs originals | `ablation/evidence_controls.py` | `evidence_controls_cropaug.json` |
+| Tab 2: v2 | `rces-2/within_stratum.py` | `v2_within_stratum_cropaug.json` |
+| §6.1 permutation test | `ablation/permutation_test.py` | `permutation_test_cropaug.json` |
+| §6.1 rule-disjoint CV | `ablation/rule_disjoint.py` | `rule_disjoint_cropaug.json` |
+| §6.1 causes; Tab 3; Fig 3 | `ablation/camera_ready.py`; figure: `figures/make_figures.py` | `camera_ready_siglip2_512_cropaug.json` |
+| §6.2 gate on / off / visual subset; §6.5 error decomposition | `rces/evaluate.py` | `rces_eval_report_e0_corrected_siglip2_512_cropaug.json` |
+| §6.3 ablation prose | `ablation/multiseed.py` | `multiseed_ablation_summary_cropaug.json` |
+| Tab 4 (aggregation) | `ablation/aggregation_pairlevel.py` | `aggregation_pairlevel_cropaug.json` |
+| Tab 5 (backbone) | `ablation/camera_ready.py` per encoder | `camera_ready_{siglip2_512,siglip2_224,dinov2}_cropaug.json` |
+| Tab 6: answer-side gates | `baselines/cascade.py` per VLM | `cascade_task2_<VLM>.json` |
+| Tab 6: R-CES column | `ablation/task2_multiseed.py` | `task2_multiseed_cropaug.json` |
+
+The within-stratum estimator lives only in `src/stratified.py`. It computes AUROC per seed and
+then averages, and bootstraps with one shared test-image resample per replicate.
+
 ## Ablations
 
 `ablation/run.py` trains and evaluates:

@@ -266,6 +266,22 @@ ABLATE_NO_IS_VISUAL = False  # legacy compatibility; corrected E0 already omits 
 ABLATE_NO_TEXT_CONDITIONING = False  # zero checkpoint text -> image-only head.
 AGGREGATION_MODE = "min"  # "min" | "mean" | "product".
 
+# --- Rebuttal controls: does the head actually read the image? -----------------
+# INPUT_MODE gates the head's input channels at construction time (see
+# rces.model.RCESHead): "text_only" zeroes the patch tokens, "image_only" zeroes
+# the conditioning text. Reviewers asked for both as explicit channel controls.
+INPUT_MODE = os.environ.get("RCES_INPUT_MODE", "full")
+# SHUFFLE_IMAGE_EVAL permutes the image->pair assignment at *evaluation* time
+# only, so a normally-trained head is scored against mismatched images. A head
+# that ignores the image is unaffected; a head that uses it must degrade.
+SHUFFLE_IMAGE_EVAL = os.environ.get("RCES_SHUFFLE_IMAGE_EVAL", "0") == "1"
+SHUFFLE_IMAGE_SEED = int(os.environ.get("RCES_SHUFFLE_IMAGE_SEED", "12345"))
+# RULE_FILTER supports rule-disjoint (leave-rules-out) evaluation, which the
+# image-disjoint split cannot provide: ("exclude", {rule_id, ...}) drops those
+# rules from a build, ("include", {...}) keeps only them. Set by the k-fold
+# driver around train/evaluate; None restores the default all-rules behaviour.
+RULE_FILTER: tuple[str, frozenset[str]] | None = None
+
 # --- Selective prediction / evaluation ----------------------------------------
 TARGET_RISK = 0.10  # coverage@risk and effective-reliability report point.
 ECE_BINS = 10

@@ -1,4 +1,4 @@
-"""Train the R-CES head on cached SigLIP 2 features (Readme step 7).
+"""Train the R-CES head on cached SigLIP 2 features.
 
 Trains ONLY the light head; SigLIP 2 stays frozen (features are precomputed by
 encode_siglip2.py). Supervision is per-critical-checkpoint resolvable with BCE;
@@ -89,7 +89,9 @@ def main() -> None:
     train_loader, _, train_examples = make_loader(train_ids, shuffle=True)
     img_dim, txt_dim = infer_dims(train_loader)
     use_is_visual = config.USE_IS_VISUAL_FEATURE and not config.ABLATE_NO_IS_VISUAL
-    head = RCESHead(img_dim=img_dim, txt_dim=txt_dim, use_is_visual=use_is_visual).to(device)
+    head = RCESHead(
+        img_dim=img_dim, txt_dim=txt_dim, use_is_visual=use_is_visual, input_mode=config.INPUT_MODE
+    ).to(device)
     optimizer = torch.optim.AdamW(head.parameters(), lr=config.LR, weight_decay=config.WEIGHT_DECAY)
 
     has_val = bool(val_ids)
@@ -99,7 +101,8 @@ def main() -> None:
         f"device={device} | train examples={len(train_examples)} | dims img={img_dim} txt={txt_dim} | "
         f"is_visual={use_is_visual} | ablations: ckpt={config.ABLATE_NO_CHECKPOINT_SUPERVISION} "
         f"is_visual_off={config.ABLATE_NO_IS_VISUAL} "
-        f"text_off={config.ABLATE_NO_TEXT_CONDITIONING} aggregation={config.AGGREGATION_MODE}"
+        f"text_off={config.ABLATE_NO_TEXT_CONDITIONING} aggregation={config.AGGREGATION_MODE} "
+        f"input_mode={config.INPUT_MODE}"
     )
     for epoch in range(1, config.EPOCHS + 1):
         train_loss = run_epoch(head, train_loader, device, optimizer)

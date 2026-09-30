@@ -21,20 +21,25 @@ src/                 core library (paths/config, IO, metrics, label vocab)
   rces_io.py         canonical label vocab, JSONL/rule IO, image encoding hooks
   exp_io.py          experiment data loading (gold + crop augmentation)
   metrics.py         AUROC / AURC / ECE / image-clustered bootstrap CIs
+  stratified.py      within-stratum AUROC + two-level (seed x image) bootstrap
 experiments/         offline experiments (human gold only)
   rces/              v1 head (checkpoint-resolvability) — train/evaluate
-  rces-2/            v2 head (text-context-first) — train/evaluate/ablation/multiseed
-  ablation/          v1 ablation + multi-seed drivers
+  rces-2/            v2 head (text-context-first) — train/evaluate/ablation/multiseed,
+                     within-stratum
+  ablation/          v1 ablation + multi-seed drivers; 10-seed paper analyses
+                     (channel controls, permutation test, rule-disjoint CV,
+                     pair-level aggregation, calibration/backbone, Task-2)
   baselines/         answer-side confidence (MaxProb, entropy, margin, temperature
                      scaling, Kamath calibrator), self-evaluation (P(True),
                      verbalized), local-VLM driver, Task-2 cascade + 7-VLM decoupling
   retrieval/         SigLIP2 vs hierarchical-VLM rule retrieval comparison
   data/              feature encoding (SigLIP2 / DINOv2) + split construction
+  figures/           data-driven paper figure (calibration reliability diagrams)
   determinism.py     deterministic-training helper (math SDPA, seeded)
 Script/              annotation pipeline (LAN web UI, GPT description, model baseline)
 Prompt/              English prompts (annotation, description, baselines, self-eval)
 tests/               syntax/interface/boundary checks (not a pytest suite)
-tmp/                 reproduction helpers (pair generators, validator)
+tmp/                 reproduction helpers (pair generators, validator, IAA)
 data/
   pairs/             gold, isolated model baseline, double-annotation, crop aug,
                      23-rule benchmark subset, unified schema, field docs
@@ -61,6 +66,8 @@ codebook.md          authoritative Stage-1 annotation manual
 | `RCES_SEED` / `RCES_N_SEEDS` | base seed / number of seeds for multi-seed drivers |
 | `RCES_LOCAL_QWEN_MODEL` | downstream compliance VLM for Task-2 (model dir name) |
 | `RCES_REMOTE_VLM_URL` / `RCES_REMOTE_VLM_ID` | OpenAI-compatible (vLLM) endpoint + served model id for an off-box compliance VLM |
+| `RCES_INPUT_MODE` | `full` (default) \| `text_only` \| `image_only` channel control |
+| `RCES_SHUFFLE_IMAGE_EVAL` / `RCES_SHUFFLE_IMAGE_SEED` | shuffled image->pair assignment at evaluation |
 | `CUBLAS_WORKSPACE_CONFIG=:4096:8` | required for deterministic cuBLAS |
 
 ## Reproduction sketch (after providing images + weights, see DATA_AVAILABILITY.md)
@@ -82,6 +89,10 @@ env $ENV RCES_LOCAL_QWEN_MODEL=InternVL3_5-8B-HF uv run python experiments/basel
 env $ENV RCES_LOCAL_QWEN_MODEL=InternVL3_5-8B-HF uv run python experiments/baselines/self_eval.py
 # 5. Task-2 selective-compliance cascade (all gates, per downstream VLM)
 env $ENV RCES_LOCAL_QWEN_MODEL=InternVL3_5-8B-HF uv run python experiments/baselines/cascade.py
+# 6. 10-seed paper analyses (script -> paper float: experiments/README.md)
+env $ENV RCES_N_SEEDS=10 RCES_LOCAL_QWEN_MODEL=Qwen3.5-9B uv run python experiments/ablation/camera_ready.py
+# 7. inter-annotator agreement (CPU only, no images needed)
+uv run python tmp/compute_iaa.py
 ```
 
 The Task-2 study sweeps seven open-weight compliance VLMs (Gemma-4 E2B/E4B,

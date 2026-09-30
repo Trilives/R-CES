@@ -1,0 +1,1410 @@
+[
+  {
+    "rule_id": "R-OPN-001-small-opening-cover",
+    "major_category": "Opening Hazard",
+    "subcategory": "Floor reserved opening",
+    "rule_name": "Cover missing or unfixed over a non-vertical opening with 25-500 mm short edge",
+    "visual_checkpoints": {
+      "horizontal_opening_present": "Non-vertical opening present?",
+      "cover_present": "Cover present?",
+      "cover_fixed": "Cover fixed against displacement?",
+      "small_opening_cover_sufficient": "Small horizontal opening visibly covered by a present and fixed cover sufficient to prevent fall-through?"
+    },
+    "required_checkpoints": [
+      "horizontal_opening_present",
+      "cover_present",
+      "cover_fixed",
+      "small_opening_cover_sufficient"
+    ],
+    "critical_checkpoints": [
+      "horizontal_opening_present",
+      "small_opening_cover_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "horizontal_opening_present == yes AND small_opening_cover_sufficient == no",
+    "visual_retrieval_text": "floor opening, small reserved slab hole, opening cover plate, fixed cover",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-002-medium-opening-protection",
+    "major_category": "Opening Hazard",
+    "subcategory": "Floor reserved opening",
+    "rule_name": "Non-vertical opening with 500-1500 mm short edge lacking a cover or guardrail",
+    "visual_checkpoints": {
+      "horizontal_opening_present": "Non-vertical opening present?",
+      "cover_fixed": "Cover present and fixed?",
+      "guardrail_compliant": "Compliant guardrail present?",
+      "opening_protection_sufficient": "At least one acceptable protection method visibly present and adequate (fixed cover OR compliant guardrail)?"
+    },
+    "required_checkpoints": [
+      "horizontal_opening_present",
+      "cover_fixed",
+      "guardrail_compliant",
+      "opening_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "horizontal_opening_present",
+      "opening_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "horizontal_opening_present == yes AND opening_protection_sufficient == no",
+    "visual_retrieval_text": "floor slab opening, open slab opening, covered opening, opening guardrail",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-003-large-opening-rail-net",
+    "major_category": "Opening Hazard",
+    "subcategory": "Floor reserved opening",
+    "rule_name": "Opening with short edge >= 1500 mm lacking a guardrail or safety net",
+    "visual_checkpoints": {
+      "large_opening_present": "Large opening present?",
+      "guardrail_present": "Guardrail present?",
+      "guardrail_visibly_inadequate": "Guardrail visibly incomplete, too low or otherwise grossly inadequate?",
+      "safety_net_present": "Safety net present?",
+      "toe_board_present": "Kickboard present?",
+      "large_opening_protection_complete": "Required large-opening protection visibly complete and adequate (guardrail, safety net and toe board)?"
+    },
+    "required_checkpoints": [
+      "large_opening_present",
+      "guardrail_present",
+      "guardrail_visibly_inadequate",
+      "safety_net_present",
+      "toe_board_present",
+      "large_opening_protection_complete"
+    ],
+    "critical_checkpoints": [
+      "large_opening_present",
+      "large_opening_protection_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "large_opening_present == yes AND large_opening_protection_complete == no",
+    "visual_retrieval_text": "large floor opening, big slab hole, opening guardrail, opening safety net",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-004-vertical-opening-enclosure",
+    "major_category": "Opening Hazard",
+    "subcategory": "Vertical opening / window / low sill",
+    "rule_name": "Vertical opening with short edge >= 500 mm lacking a guardrail or enclosure",
+    "visual_checkpoints": {
+      "vertical_opening_present": "Vertical opening present?",
+      "fall_risk_present": "Fall-from-height risk present?",
+      "guardrail_compliant": "Compliant railing present?",
+      "vertical_net_or_panel_present": "Vertical net or panel present?",
+      "toe_board_present": "Toe board present?",
+      "vertical_opening_protection_complete": "Vertical opening fall protection visibly complete and adequate (guardrail plus net/panel and toe board where required)?"
+    },
+    "required_checkpoints": [
+      "vertical_opening_present",
+      "fall_risk_present",
+      "guardrail_compliant",
+      "vertical_net_or_panel_present",
+      "toe_board_present",
+      "vertical_opening_protection_complete"
+    ],
+    "critical_checkpoints": [
+      "vertical_opening_present",
+      "fall_risk_present",
+      "vertical_opening_protection_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "vertical_opening_present == yes AND fall_risk_present == yes AND vertical_opening_protection_complete == no",
+    "visual_retrieval_text": "vertical wall opening, window opening, opening guardrail, panel enclosure",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-005-elevator-shaft-door",
+    "major_category": "Opening Hazard",
+    "subcategory": "Elevator shaft / hoistway opening",
+    "rule_name": "Elevator shaft protective door missing, too low, or with excessive bottom gap",
+    "visual_checkpoints": {
+      "elevator_shaft_present": "Elevator-shaft opening present?",
+      "protective_door_present": "Protective door present?",
+      "protective_door_visibly_inadequate": "Protective door visibly open, too low, unfixed, or with an obvious bottom gap?",
+      "elevator_shaft_door_protection_sufficient": "Elevator shaft opening visibly has sufficient protective door/barrier protection, with no gross door-height or bottom-gap defect?"
+    },
+    "required_checkpoints": [
+      "elevator_shaft_present",
+      "protective_door_present",
+      "protective_door_visibly_inadequate",
+      "elevator_shaft_door_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "elevator_shaft_present",
+      "elevator_shaft_door_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "elevator_shaft_present == yes AND elevator_shaft_door_protection_sufficient == no",
+    "visual_retrieval_text": "elevator shaft doorway, hoistway opening, low shaft door, red protective shaft door",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-006-elevator-shaft-net",
+    "major_category": "Opening Hazard",
+    "subcategory": "Elevator shaft / hoistway opening",
+    "rule_name": "Elevator shaft lacking interior safety nets at the required spacing",
+    "visual_checkpoints": {
+      "elevator_shaft_present": "Elevator shaft present?",
+      "inner_safety_net_present": "Interior safety net present in shaft?"
+    },
+    "required_checkpoints": [
+      "elevator_shaft_present",
+      "inner_safety_net_present"
+    ],
+    "critical_checkpoints": [
+      "elevator_shaft_present",
+      "inner_safety_net_present"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "elevator_shaft_present == yes AND inner_safety_net_present == no",
+    "visual_retrieval_text": "elevator shaft interior, hoistway opening, shaft safety net",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-007-low-sill-opening",
+    "major_category": "Opening Hazard",
+    "subcategory": "Vertical opening / window / low sill",
+    "rule_name": "Vertical opening with sill height < 800 mm not protected as an edge",
+    "visual_checkpoints": {
+      "low_sill_opening_present": "Low-sill opening present?",
+      "guardrail_compliant": "Edge-type compliant guardrail present?"
+    },
+    "required_checkpoints": [
+      "low_sill_opening_present",
+      "guardrail_compliant"
+    ],
+    "critical_checkpoints": [
+      "low_sill_opening_present",
+      "guardrail_compliant"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "low_sill_opening_present == yes AND (guardrail_compliant == no)",
+    "visual_retrieval_text": "low-sill window opening, low parapet opening, sill guardrail",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-008-manual-pile-shaft",
+    "major_category": "Opening Hazard",
+    "subcategory": "Sump / pit / cable trench / manhole cover",
+    "rule_name": "Manual-dig pile shaft deeper than 2 m without edge protection or cover",
+    "visual_checkpoints": {
+      "manual_pile_opening_present": "Manual-dig pile shaft opening present?",
+      "guardrail_present": "Edge protection present?",
+      "cover_present": "Half-round cover present?",
+      "pile_shaft_protection_complete": "Manual pile shaft opening visibly has both required edge guardrail and cover protection?"
+    },
+    "required_checkpoints": [
+      "manual_pile_opening_present",
+      "guardrail_present",
+      "cover_present",
+      "pile_shaft_protection_complete"
+    ],
+    "critical_checkpoints": [
+      "manual_pile_opening_present",
+      "pile_shaft_protection_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "manual_pile_opening_present == yes AND pile_shaft_protection_complete == no",
+    "visual_retrieval_text": "manual-dig pile shaft, deep pile hole, shaft edge guardrail, shaft cover",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-OPN-009-service-shaft-opening",
+    "major_category": "Opening Hazard",
+    "subcategory": "Service / vent / utility shaft opening",
+    "rule_name": "Service, vent or utility shaft opening unsealed or poorly protected",
+    "visual_checkpoints": {
+      "shaft_opening_present": "Service/vent/utility shaft opening present?",
+      "opening_closed": "Opening sealed?",
+      "cover_fixed": "Cover or mesh fixed?",
+      "fall_risk_present": "Person-fall risk present?",
+      "shaft_opening_protection_sufficient": "Service/air shaft opening visibly closed or covered with fixed protection sufficient to prevent fall-through?"
+    },
+    "required_checkpoints": [
+      "shaft_opening_present",
+      "opening_closed",
+      "cover_fixed",
+      "fall_risk_present",
+      "shaft_opening_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "shaft_opening_present",
+      "fall_risk_present",
+      "shaft_opening_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "shaft_opening_present == yes AND fall_risk_present == yes AND shaft_opening_protection_sufficient == no",
+    "visual_retrieval_text": "pipe shaft opening, vent shaft opening, shaft mesh cover",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-OPN-010-opening-protection-not-restored",
+    "major_category": "Opening Hazard",
+    "subcategory": "Floor reserved opening",
+    "rule_name": "Opening protection removed, damaged or opened and not promptly restored",
+    "visual_checkpoints": {
+      "opening_present": "Opening present?",
+      "protection_removed_or_damaged": "Protection removed or damaged?",
+      "protection_restored": "Protection restored?",
+      "opening_protection_currently_unrestored_or_damaged": "Opening protection visibly removed, damaged, or not restored after temporary removal?"
+    },
+    "required_checkpoints": [
+      "opening_present",
+      "protection_removed_or_damaged",
+      "protection_restored",
+      "opening_protection_currently_unrestored_or_damaged"
+    ],
+    "critical_checkpoints": [
+      "opening_present",
+      "opening_protection_currently_unrestored_or_damaged"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "opening_present == yes AND opening_protection_currently_unrestored_or_damaged == yes",
+    "visual_retrieval_text": "floor opening, displaced cover plate, exposed slab hole, opening left open",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-EDG-001-floor-edge",
+    "major_category": "Edge Hazard",
+    "subcategory": "Floor / structural edge",
+    "rule_name": "Floor edge at 2 m or higher without compliant protection",
+    "visual_checkpoints": {
+      "floor_edge_present": "Floor edge present?",
+      "guardrail_present": "Guardrail present?",
+      "edge_closed": "Edge sealed?",
+      "edge_protection_sufficient": "Floor edge visibly protected by compliant guardrail or complete edge closure/sealing?"
+    },
+    "required_checkpoints": [
+      "floor_edge_present",
+      "guardrail_present",
+      "edge_closed",
+      "edge_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "floor_edge_present",
+      "edge_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "floor_edge_present == yes AND edge_protection_sufficient == no",
+    "visual_retrieval_text": "open floor edge, structural slab edge, drop edge, edge guardrail",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-003-roof-balcony-platform-edge",
+    "major_category": "Edge Hazard",
+    "subcategory": "Roof / balcony / stair / platform edge",
+    "rule_name": "Roof, balcony, stair or platform edge without compliant edge protection",
+    "visual_checkpoints": {
+      "roof_balcony_stair_platform_edge_present": "Roof/balcony/stair/platform edge present?",
+      "fall_risk_present": "Fall risk present?",
+      "guardrail_compliant": "Compliant guardrail present?",
+      "edge_closed": "Edge sealed?",
+      "roof_balcony_stair_platform_edge_protection_sufficient": "Roof/balcony/stair/platform edge visibly protected by compliant guardrail or complete edge closure/sealing?"
+    },
+    "required_checkpoints": [
+      "roof_balcony_stair_platform_edge_present",
+      "fall_risk_present",
+      "guardrail_compliant",
+      "edge_closed",
+      "roof_balcony_stair_platform_edge_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "roof_balcony_stair_platform_edge_present",
+      "fall_risk_present",
+      "roof_balcony_stair_platform_edge_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "roof_balcony_stair_platform_edge_present == yes AND fall_risk_present == yes AND roof_balcony_stair_platform_edge_protection_sufficient == no",
+    "visual_retrieval_text": "roof edge, balcony edge, stair edge, stair landing edge, platform edge, parapet guardrail",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-EDG-004-hoist-landing-platform",
+    "major_category": "Edge Hazard",
+    "subcategory": "Hoist / unloading platform / passage-opening edge",
+    "rule_name": "Construction hoist landing-platform sides or opening with noncompliant protection",
+    "visual_checkpoints": {
+      "hoist_platform_present": "Construction hoist landing platform present?",
+      "side_guardrail_present": "Side guardrails present?",
+      "toe_board_present": "Toe board present?",
+      "door_locked_or_closed": "Protective door securely closed?",
+      "hoist_platform_protection_complete": "Hoist landing platform visibly has complete side guardrails, toe board and closed/locked door protection?"
+    },
+    "required_checkpoints": [
+      "hoist_platform_present",
+      "side_guardrail_present",
+      "toe_board_present",
+      "door_locked_or_closed",
+      "hoist_platform_protection_complete"
+    ],
+    "critical_checkpoints": [
+      "hoist_platform_present",
+      "hoist_platform_protection_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "hoist_platform_present == yes AND hoist_platform_protection_complete == no",
+    "visual_retrieval_text": "construction hoist landing platform, unloading platform edge, platform opening, protective door, platform guardrail",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-005-scaffold-structure-gap",
+    "major_category": "Edge Hazard",
+    "subcategory": "Scaffold-structure gap / facade edge",
+    "rule_name": "Through-gap between scaffold and structure facade without horizontal protection",
+    "visual_checkpoints": {
+      "scaffold_structure_gap_present": "Scaffold-structure gap present?",
+      "gap_continuous": "Gap continuous?",
+      "horizontal_protection_present": "Horizontal protection present?",
+      "fall_object_risk_present": "Person or material fall risk present?"
+    },
+    "required_checkpoints": [
+      "scaffold_structure_gap_present",
+      "gap_continuous",
+      "horizontal_protection_present",
+      "fall_object_risk_present"
+    ],
+    "critical_checkpoints": [
+      "scaffold_structure_gap_present",
+      "gap_continuous",
+      "horizontal_protection_present",
+      "fall_object_risk_present"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "scaffold_structure_gap_present == yes AND gap_continuous == yes AND fall_object_risk_present == yes AND horizontal_protection_present == no",
+    "visual_retrieval_text": "gap between scaffold and building facade, open scaffold-structure gap, horizontal gap protection, gap safety net",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-EDG-006-pit-trench-edge",
+    "major_category": "Edge Hazard",
+    "subcategory": "Pit / trench / ramp / vehicle-entrance edge",
+    "rule_name": "Pit, ditch or trench edge without compliant edge protection",
+    "visual_checkpoints": {
+      "pit_or_trench_edge_present": "Pit / trench edge present?",
+      "guardrail_present": "Guardrail present?",
+      "guardrail_stable": "Guardrail secure?",
+      "warning_present": "Warning measures present?",
+      "pit_trench_edge_protection_sufficient": "Pit/trench edge visibly has stable and adequate guardrail or warning/barrier protection?"
+    },
+    "required_checkpoints": [
+      "pit_or_trench_edge_present",
+      "guardrail_present",
+      "guardrail_stable",
+      "warning_present",
+      "pit_trench_edge_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "pit_or_trench_edge_present",
+      "pit_trench_edge_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "pit_or_trench_edge_present == yes AND pit_trench_edge_protection_sufficient == no",
+    "visual_retrieval_text": "foundation pit edge, trench edge, ramp edge, pit guardrail, warning barrier",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-EDG-007-guardrail-height",
+    "major_category": "Edge Hazard",
+    "subcategory": "Substandard guardrail construction",
+    "rule_name": "Edge-protection guardrail top rail lower than 1.2 m",
+    "visual_checkpoints": {
+      "guardrail_present": "Guardrail present (any)?",
+      "fall_risk_present": "Fall-from-height risk present?",
+      "guardrail_grossly_low": "Does the guardrail top rail look grossly too low (clearly below ~waist / 1.2 m; coarse, not a measurement)?"
+    },
+    "required_checkpoints": [
+      "guardrail_present",
+      "fall_risk_present",
+      "guardrail_grossly_low"
+    ],
+    "critical_checkpoints": [
+      "guardrail_present",
+      "fall_risk_present",
+      "guardrail_grossly_low"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "guardrail_present == yes AND fall_risk_present == yes AND guardrail_grossly_low == yes",
+    "visual_retrieval_text": "edge guardrail, top rail height, low guardrail, knee-high rail, tall guardrail, vertical posts, stair guardrail",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-008-toe-board-missing",
+    "major_category": "Edge Hazard",
+    "subcategory": "Substandard guardrail construction",
+    "rule_name": "Edge-protection toe board missing or too low",
+    "visual_checkpoints": {
+      "edge_guardrail_present": "Edge guardrail present?",
+      "toe_board_present": "Toe board present?"
+    },
+    "required_checkpoints": [
+      "edge_guardrail_present",
+      "toe_board_present"
+    ],
+    "critical_checkpoints": [
+      "edge_guardrail_present",
+      "toe_board_present"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "edge_guardrail_present == yes AND toe_board_present == no",
+    "visual_retrieval_text": "guardrail toe board, low toe board, edge guardrail base, stair edge toe board",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-009-guardrail-spacing",
+    "major_category": "Edge Hazard",
+    "subcategory": "Substandard guardrail construction",
+    "rule_name": "Edge guardrail post or rail spacing not meeting requirements",
+    "visual_checkpoints": {
+      "guardrail_present": "Guardrail provided?",
+      "guardrail_stable": "Guardrail stable (firm)?",
+      "guardrail_spacing_grossly_noncompliant": "Guardrail post or rail spacing looks grossly excessive (coarse visual proxy, not measurement)?",
+      "guardrail_construction_sufficient": "Guardrail construction visibly continuous, stable and without gross spacing/structural defect?"
+    },
+    "required_checkpoints": [
+      "guardrail_present",
+      "guardrail_stable",
+      "guardrail_spacing_grossly_noncompliant",
+      "guardrail_construction_sufficient"
+    ],
+    "critical_checkpoints": [
+      "guardrail_present",
+      "guardrail_construction_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "guardrail_present == yes AND guardrail_construction_sufficient == no",
+    "visual_retrieval_text": "guardrail post spacing, widely spaced posts, mid rail, edge guardrail rails, stair guardrail spacing",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-010-edge-protection-not-restored",
+    "major_category": "Edge Hazard",
+    "subcategory": "Floor / structural edge",
+    "rule_name": "Edge protection removed, opened or damaged and not promptly restored",
+    "visual_checkpoints": {
+      "edge_present": "Edge present?",
+      "protection_removed_or_damaged": "Edge protection removed or damaged?",
+      "protection_restored": "Protection restored?",
+      "temporary_warning_present": "Temporary warning present?",
+      "edge_protection_currently_unrestored_or_damaged": "Edge protection visibly removed, damaged, or not restored after temporary removal?"
+    },
+    "required_checkpoints": [
+      "edge_present",
+      "protection_removed_or_damaged",
+      "protection_restored",
+      "temporary_warning_present",
+      "edge_protection_currently_unrestored_or_damaged"
+    ],
+    "critical_checkpoints": [
+      "edge_present",
+      "edge_protection_currently_unrestored_or_damaged"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "edge_present == yes AND edge_protection_currently_unrestored_or_damaged == yes",
+    "visual_retrieval_text": "edge guardrail, broken edge railing, open edge gap, drop edge, stair edge railing",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-001-no-harness-at-height",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Working at height without harness",
+    "rule_name": "Working at 2 m or higher without wearing or anchoring a safety harness",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "harness_worn": "Harness worn?",
+      "harness_anchored": "Harness anchored to a reliable point?",
+      "near_edge_or_opening": "Near an edge, opening, scaffold exterior, or other visible fall-risk location?",
+      "fall_protection_sufficient": "Visible worker near a fall edge/opening has sufficient fall protection (harness worn and anchored where required)?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "harness_worn",
+      "harness_anchored",
+      "near_edge_or_opening",
+      "fall_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "near_edge_or_opening",
+      "fall_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND near_edge_or_opening == yes AND fall_protection_sufficient == no",
+    "visual_retrieval_text": "worker at height, person on scaffold edge, safety harness lanyard, anchored lifeline",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-BHV-002-no-helmet",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "No / improper safety helmet",
+    "rule_name": "Site personnel not wearing a safety helmet",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "construction_site_context": "On a construction site?",
+      "helmet_present": "Helmet worn?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "helmet_present"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "helmet_present"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND construction_site_context == yes AND (helmet_present == no)",
+    "visual_retrieval_text": "construction worker, person's head, bare head, worker wearing hard hat",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-003-helmet-worn-incorrectly",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "No / improper safety helmet",
+    "rule_name": "Helmet worn backwards, chin strap unfastened, or otherwise improperly worn",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "helmet_present": "Helmet worn?",
+      "helmet_worn_correctly": "Helmet orientation/position correct?",
+      "chin_strap_fastened": "Chin strap fastened?",
+      "helmet_wearing_violation_visible": "Helmet-use violation visibly present (helmet worn incorrectly or chin strap not fastened)?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "helmet_present",
+      "helmet_worn_correctly",
+      "chin_strap_fastened",
+      "helmet_wearing_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "helmet_present",
+      "helmet_wearing_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND helmet_present == yes AND helmet_wearing_violation_visible == yes",
+    "visual_retrieval_text": "worker head, hard hat chin strap, unfastened chin strap, backward helmet, loosely worn helmet",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-004-illegal-climbing",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper climbing / ladder use",
+    "rule_name": "Illegal climbing of scaffold, rebar cage or makeshift support members",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "climbing_behavior_present": "Climbing behavior present?",
+      "unsafe_climbing_object": "Climbing scaffold/rebar cage/brace (non-access member)?",
+      "safe_access_present": "Compliant access route present?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "climbing_behavior_present",
+      "unsafe_climbing_object",
+      "safe_access_present"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "climbing_behavior_present",
+      "unsafe_climbing_object"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND climbing_behavior_present == yes AND unsafe_climbing_object == yes",
+    "visual_retrieval_text": "worker climbing scaffold, person climbing rebar cage, worker on temporary support, person climbing structure",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-005-improper-ladder-use",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper climbing / ladder use",
+    "rule_name": "Over-height ladder, two people on one ladder, or ladder erected on scaffold",
+    "visual_checkpoints": {
+      "ladder_present": "Ladder in use?",
+      "two_persons_on_same_ladder": "Two people on the same ladder?",
+      "ladder_on_scaffold": "Ladder set up on scaffold working level?",
+      "ladder_use_stable": "Ladder use stable?",
+      "ladder_violation_visible": "Any improper ladder-use condition visibly present (two people on one ladder, ladder placed on scaffold, or unstable ladder use)?"
+    },
+    "required_checkpoints": [
+      "ladder_present",
+      "two_persons_on_same_ladder",
+      "ladder_on_scaffold",
+      "ladder_use_stable",
+      "ladder_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "ladder_present",
+      "ladder_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "ladder_present == yes AND ladder_violation_visible == yes",
+    "visual_retrieval_text": "worker on ladder, over-height step ladder, two people on one ladder, ladder on scaffold, person standing on ladder top",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-006-uncertified-special-operation",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Habitual violation / poor on-site behavior",
+    "rule_name": "Performing construction special operations without a valid qualification certificate",
+    "visual_checkpoints": {
+      "special_operation_present": "Special operation present?"
+    },
+    "required_checkpoints": [
+      "special_operation_present"
+    ],
+    "critical_checkpoints": [],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "not_available_for_single_image",
+    "visual_retrieval_text": "welder at work, crane signaller, suspended-platform operator, worker doing special operation",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-BHV-007-illegal-electrical-work",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Habitual violation / poor on-site behavior",
+    "rule_name": "Illegal electrical work or live-line tapping of circuits",
+    "visual_checkpoints": {
+      "electrical_work_present": "Wiring or electrical work present?",
+      "exposed_live_parts_or_unsafe_tapping_visible": "Exposed live parts, unsafe tapping, or visibly unsafe wiring present?",
+      "lockout_tagout_visible": "Lockout/tagout or isolation sign visibly present?",
+      "electrical_ppe_present": "Electrical-work PPE worn?",
+      "electrical_safety_violation_visible": "Visible electrical-work safety violation present (exposed live part/unsafe tapping, missing lockout, or missing electrical PPE)?"
+    },
+    "required_checkpoints": [
+      "electrical_work_present",
+      "exposed_live_parts_or_unsafe_tapping_visible",
+      "lockout_tagout_visible",
+      "electrical_ppe_present",
+      "electrical_safety_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "electrical_work_present",
+      "electrical_safety_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "electrical_work_present == yes AND electrical_safety_violation_visible == yes",
+    "visual_retrieval_text": "electrician working on live wire, worker tapping power, exposed live wire, temporary power box",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-BHV-008-machinery-area-not-cleared",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper use of machinery / lifting gear / forklift",
+    "rule_name": "Machinery operating without clearing the area or with people in the slewing radius",
+    "visual_checkpoints": {
+      "machine_operating": "Machinery operating?",
+      "person_in_danger_zone": "Person within danger radius?",
+      "spotter_present": "Spotter/supervisor present?"
+    },
+    "required_checkpoints": [
+      "machine_operating",
+      "person_in_danger_zone",
+      "spotter_present"
+    ],
+    "critical_checkpoints": [
+      "machine_operating",
+      "person_in_danger_zone"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "machine_operating == yes AND person_in_danger_zone == yes",
+    "visual_retrieval_text": "crane or excavator working, person inside slewing radius, worker near operating machinery, lifting work area",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-BHV-009-suspended-platform-lifting-violation",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper use of machinery / lifting gear / forklift",
+    "rule_name": "Suspended platform overloaded, lifeline not independently suspended, or non-personnel equipment lifting people",
+    "visual_checkpoints": {
+      "basket_or_lifting_operation_present": "Suspended platform or lifting operation present?",
+      "independent_lifeline_present": "Lifeline independently suspended?",
+      "non_personnel_equipment_carrying_person": "Non-personnel equipment lifting people?",
+      "suspended_platform_lifting_violation_visible": "Suspended platform/basket or lifting operation visibly violates lifeline/personnel-use requirements?"
+    },
+    "required_checkpoints": [
+      "basket_or_lifting_operation_present",
+      "independent_lifeline_present",
+      "non_personnel_equipment_carrying_person",
+      "suspended_platform_lifting_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "basket_or_lifting_operation_present",
+      "suspended_platform_lifting_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "basket_or_lifting_operation_present == yes AND suspended_platform_lifting_violation_visible == yes",
+    "visual_retrieval_text": "suspended work platform, overloaded platform, people lifted by machinery, platform lifeline, crane lifting personnel",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-BHV-010-hot-work-violation",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Habitual violation / poor on-site behavior",
+    "rule_name": "Hot work or welding/cutting at height or edge without spark-catch, fire-prevention or watch measures",
+    "visual_checkpoints": {
+      "hot_work_present": "Hot work or welding/cutting present?",
+      "catch_pan_present": "Spark-catch pan present?",
+      "combustibles_cleared": "Surrounding combustibles cleared?",
+      "fire_extinguisher_present": "Fire extinguisher present?",
+      "fire_watch_present": "Fire watch present?",
+      "hot_work_fire_prevention_sufficient": "Visible hot-work fire-prevention measures sufficient (spark catch/clear combustibles/extinguisher/watch as applicable)?"
+    },
+    "required_checkpoints": [
+      "hot_work_present",
+      "catch_pan_present",
+      "combustibles_cleared",
+      "fire_extinguisher_present",
+      "fire_watch_present",
+      "hot_work_fire_prevention_sufficient"
+    ],
+    "critical_checkpoints": [
+      "hot_work_present",
+      "hot_work_fire_prevention_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "hot_work_present == yes AND hot_work_fire_prevention_sufficient == no",
+    "visual_retrieval_text": "welding or cutting at height, hot work at edge, welding sparks, spark-catch pan, fire watch",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-011-severe-weather-operation",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Habitual violation / poor on-site behavior",
+    "rule_name": "Illegal lifting, installation/dismantling or work at height in severe weather",
+    "visual_checkpoints": {
+      "high_risk_operation_present": "Lifting/height/installation/dismantling work present?",
+      "operation_suspended": "Work suspended?"
+    },
+    "required_checkpoints": [
+      "high_risk_operation_present",
+      "operation_suspended"
+    ],
+    "critical_checkpoints": [
+      "high_risk_operation_present",
+      "operation_suspended"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "high_risk_operation_present == yes AND (operation_suspended == no)",
+    "visual_retrieval_text": "crane lifting in high wind, work at height in storm, operation in dense fog, severe weather site work",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-001-hoarding-missing-low",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Hoarding / enclosure not sealed",
+    "rule_name": "Construction hoarding missing, discontinuous or too low",
+    "visual_checkpoints": {
+      "site_boundary_present": "Site boundary present?",
+      "fence_present": "Hoarding present?",
+      "fence_continuous": "Hoarding continuous and closed?",
+      "fence_grossly_low": "Hoarding looks grossly too low (coarse visual proxy, not measurement)?",
+      "hoarding_protection_sufficient": "Construction boundary hoarding visibly present, continuous and not grossly too low?"
+    },
+    "required_checkpoints": [
+      "site_boundary_present",
+      "fence_present",
+      "fence_continuous",
+      "fence_grossly_low",
+      "hoarding_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "site_boundary_present",
+      "hoarding_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "site_boundary_present == yes AND hoarding_protection_sufficient == no",
+    "visual_retrieval_text": "site boundary hoarding, perimeter fence, low enclosure wall, gap in hoarding",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-002-road-unhardened-water-mud",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site water ponding / mud / leakage",
+    "rule_name": "Site main road or processing area unhardened, with ponding or heavy mud",
+    "visual_checkpoints": {
+      "main_road_or_processing_area_present": "Site main road or processing area present?",
+      "ground_hardened": "Ground hardened?",
+      "drainage_clear": "Drainage clear?",
+      "standing_water_present": "Obvious ponding present?",
+      "mud_pollution_present": "Obvious mud present?",
+      "road_surface_and_drainage_sufficient": "Main construction road/processing area visibly hardened, drained and free of obvious standing water or mud pollution?"
+    },
+    "required_checkpoints": [
+      "main_road_or_processing_area_present",
+      "ground_hardened",
+      "drainage_clear",
+      "standing_water_present",
+      "mud_pollution_present",
+      "road_surface_and_drainage_sufficient"
+    ],
+    "critical_checkpoints": [
+      "main_road_or_processing_area_present",
+      "road_surface_and_drainage_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "main_road_or_processing_area_present == yes AND road_surface_and_drainage_sufficient == no",
+    "visual_retrieval_text": "site main road, unhardened muddy road, ponding water on road, hardened concrete road",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-003-material-stacking-labeling",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Disorderly material stacking",
+    "rule_name": "Materials, components or tools not neatly stacked and labeled per the site layout",
+    "visual_checkpoints": {
+      "materials_present": "Materials/components/tools present?",
+      "stacking_orderly": "Stacked orderly?",
+      "material_management_sufficient": "Materials/components/tools visibly stacked neatly and with required identification/signage where applicable?"
+    },
+    "required_checkpoints": [
+      "materials_present",
+      "stacking_orderly",
+      "material_management_sufficient"
+    ],
+    "critical_checkpoints": [
+      "materials_present",
+      "material_management_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "non_visual_fields": {
+      "material_label_present": {
+        "description": "Whether each material/component carries its name/spec identification label. A label's presence and legibility can rarely be confirmed from a single site overview image (labels are small, often turned away or out of frame), so this is not a visual screening checkpoint and needs human/on-site verification.",
+        "source": ["on_site_inspection", "material_ledger", "human_review"],
+        "required_for_normative_decision": false,
+        "use_in_current_experiment": false
+      }
+    },
+    "visual_screening_rule": "materials_present == yes AND material_management_sufficient == no",
+    "visual_retrieval_text": "stacked construction materials, rebar and pipe piles, disorderly material pile, neatly stacked materials, material label board",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-004-dusty-material-uncovered",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Disorderly material stacking",
+    "rule_name": "Dust-prone materials such as sand, aggregate or earth not covered or enclosed",
+    "visual_checkpoints": {
+      "dusty_material_present": "Dust-prone material such as sand, aggregate or earth present?",
+      "covered_or_enclosed": "Covered or enclosed storage?",
+      "continuous_exposed_surface_present": "Obvious continuous exposed surface present?",
+      "dusty_material_control_sufficient": "Dust-prone material visibly covered, enclosed or otherwise controlled against exposed dusty surface?"
+    },
+    "required_checkpoints": [
+      "dusty_material_present",
+      "covered_or_enclosed",
+      "continuous_exposed_surface_present",
+      "dusty_material_control_sufficient"
+    ],
+    "critical_checkpoints": [
+      "dusty_material_present",
+      "dusty_material_control_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "dusty_material_present == yes AND dusty_material_control_sufficient == no",
+    "visual_retrieval_text": "sand or aggregate pile, bare earth pile, uncovered dusty material, dust net cover, covered material pile",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-005-spoil-waste-overheight-uncleared",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Construction waste not cleared / poor housekeeping",
+    "rule_name": "Spoil or waste stacked over height or left uncleared beyond 48 hours",
+    "visual_checkpoints": {
+      "waste_or_spoil_present": "Spoil or waste present?",
+      "spoil_grossly_overheight": "Is the spoil/waste piled grossly over height (clearly too high; coarse, not a measurement)?"
+    },
+    "required_checkpoints": [
+      "waste_or_spoil_present",
+      "spoil_grossly_overheight"
+    ],
+    "critical_checkpoints": [
+      "spoil_grossly_overheight"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "waste_or_spoil_present == yes AND spoil_grossly_overheight == yes",
+    "visual_retrieval_text": "construction waste pile, spoil heap, over-height debris pile, uncleared rubbish, cleared housekeeping area",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-006-tsp-exceedance",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site water ponding / mud / leakage",
+    "rule_name": "Construction dust TSP 15-minute average concentration exceedance",
+    "visual_checkpoints": {},
+    "required_checkpoints": [],
+    "critical_checkpoints": [],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "not_available_for_single_image",
+    "visual_retrieval_text": "dusty construction area, airborne dust, dust monitor display, water mist sprayer",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-007-vehicle-wash",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site water ponding / mud / leakage",
+    "rule_name": "Site exit vehicle-wash facility missing or washing inadequate",
+    "visual_checkpoints": {
+      "site_exit_present": "Site exit present?",
+      "auto_wash_facility_present": "Automatic wash facility present?",
+      "sedimentation_facility_present": "Sedimentation/filtration facility present?",
+      "vehicle_clean_before_exit": "Vehicle washed clean before exit?",
+      "vehicle_wash_controls_sufficient": "Site exit visibly has sufficient vehicle-wash/sedimentation controls and outgoing vehicles appear cleaned?"
+    },
+    "required_checkpoints": [
+      "site_exit_present",
+      "auto_wash_facility_present",
+      "sedimentation_facility_present",
+      "vehicle_clean_before_exit",
+      "vehicle_wash_controls_sufficient"
+    ],
+    "critical_checkpoints": [
+      "site_exit_present",
+      "vehicle_wash_controls_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "site_exit_present == yes AND vehicle_wash_controls_sufficient == no",
+    "visual_retrieval_text": "site exit vehicle wash, wheel washing facility, sedimentation tank, muddy site entrance",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-008-road-dust-exceedance",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site water ponding / mud / leakage",
+    "rule_name": "Dust load on the exit or main site roadway exceeding the limit",
+    "visual_checkpoints": {},
+    "required_checkpoints": [],
+    "critical_checkpoints": [],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "not_available_for_single_image",
+    "visual_retrieval_text": "dusty site road, mud on roadway, road sweeping, wheel wash at exit",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-009-noise-exceedance",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Construction boundary noise exceeding day/night limits",
+    "visual_checkpoints": {},
+    "required_checkpoints": [],
+    "critical_checkpoints": [],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "not_available_for_single_image",
+    "visual_retrieval_text": "piling machine, noisy construction equipment, sound barrier wall, night work site, noise meter",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-010-dormitory-noncompliant",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Dormitory bunks, aisle, area per person or occupancy not meeting requirements",
+    "visual_checkpoints": {
+      "dormitory_present": "Dormitory present?",
+      "bunk_over_2_tiers": "Are the dormitory bunks visibly more than 2 tiers (3+ tiers; coarse, not a measurement)?"
+    },
+    "required_checkpoints": [
+      "dormitory_present",
+      "bunk_over_2_tiers"
+    ],
+    "critical_checkpoints": [
+      "dormitory_present",
+      "bunk_over_2_tiers"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "dormitory_present == yes AND bunk_over_2_tiers == yes",
+    "visual_retrieval_text": "worker dormitory room, bunk beds, crowded sleeping room, narrow dorm aisle",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-011-smoking-burning",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Fire access / fire-fighting equipment",
+    "rule_name": "Roaming or unrestricted smoking on site, or burning of waste",
+    "visual_checkpoints": {
+      "smoking_or_burning_present": "Smoking or burning present?",
+      "combustibles_nearby": "Combustibles nearby?",
+      "fire_control_present": "Fire-control measures present?",
+      "smoking_burning_fire_risk_visible": "Smoking/open burning visibly creates a fire-control violation, with combustibles nearby or no fire-control measure visible?"
+    },
+    "required_checkpoints": [
+      "smoking_or_burning_present",
+      "combustibles_nearby",
+      "fire_control_present",
+      "smoking_burning_fire_risk_visible"
+    ],
+    "critical_checkpoints": [
+      "smoking_or_burning_present",
+      "smoking_burning_fire_risk_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "smoking_or_burning_present == yes AND smoking_burning_fire_risk_visible == yes",
+    "visual_retrieval_text": "worker smoking on site, lit cigarette on site, burning waste, open fire on site, designated smoking area",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-CIV-012-public-signboards-missing",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Public signboards or permit documents missing at the site gate",
+    "visual_checkpoints": {
+      "site_gate_present": "Site gate present?",
+      "project_overview_board_present": "Project overview board present?",
+      "safety_board_present": "Safety-production board present?",
+      "civilized_construction_board_present": "Civilized-construction board present?",
+      "site_plan_board_present": "Site layout plan present?",
+      "public_signboard_set_complete": "Public signboard set at the site gate visibly complete enough for required project/safety/civilized-construction/site-plan disclosure?"
+    },
+    "required_checkpoints": [
+      "site_gate_present",
+      "project_overview_board_present",
+      "safety_board_present",
+      "civilized_construction_board_present",
+      "site_plan_board_present",
+      "public_signboard_set_complete"
+    ],
+    "critical_checkpoints": [
+      "site_gate_present",
+      "public_signboard_set_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "site_gate_present == yes AND public_signboard_set_complete == no",
+    "visual_retrieval_text": "site gate signboard, project information board, permit display board, public notice board",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-013-temporary-facilities",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Office/living area not separated from work area, or noncompliant temporary facilities",
+    "visual_checkpoints": {
+      "temporary_facilities_present": "Temporary office/living facilities present?",
+      "work_area_visible_nearby": "Work area visible near the temporary facilities?",
+      "separation_or_safe_distance_visibly_absent": "Separation or safe distance between living/office area and work area visibly absent?"
+    },
+    "required_checkpoints": [
+      "temporary_facilities_present",
+      "work_area_visible_nearby",
+      "separation_or_safe_distance_visibly_absent"
+    ],
+    "critical_checkpoints": [
+      "temporary_facilities_present",
+      "work_area_visible_nearby",
+      "separation_or_safe_distance_visibly_absent"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "temporary_facilities_present == yes AND work_area_visible_nearby == yes AND separation_or_safe_distance_visibly_absent == yes",
+    "visual_retrieval_text": "prefab site office, workers living area, gate guard booth, office not separated from work area",
+    "decision_scope": "requires_external_evidence"
+  },
+  {
+    "rule_id": "R-CIV-014-fire-access-blocked",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Fire access / fire-fighting equipment",
+    "rule_name": "Fire access or emergency exit not kept clear",
+    "visual_checkpoints": {
+      "fire_access_or_exit_present": "Fire access or emergency exit present?",
+      "blocked_by_materials": "Blocked by materials/waste/equipment?",
+      "passage_clear": "Passage clear?",
+      "fire_sign_present": "Fire-evacuation sign visible?",
+      "fire_access_blocked_or_not_clear": "Fire access route or emergency exit visibly blocked, obstructed, or not clear for passage?"
+    },
+    "required_checkpoints": [
+      "fire_access_or_exit_present",
+      "blocked_by_materials",
+      "passage_clear",
+      "fire_sign_present",
+      "fire_access_blocked_or_not_clear"
+    ],
+    "critical_checkpoints": [
+      "fire_access_or_exit_present",
+      "fire_access_blocked_or_not_clear"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "fire_access_or_exit_present == yes AND fire_access_blocked_or_not_clear == yes",
+    "visual_retrieval_text": "fire access lane, emergency exit, blocked passage, obstructed fire lane, clear fire route, fire box",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-CIV-015-fire-equipment-missing",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Fire access / fire-fighting equipment",
+    "rule_name": "Fire box without an extinguisher, or fire-fighting equipment not fully provisioned",
+    "visual_checkpoints": {
+      "fire_box_or_fire_point_present": "Fire box or fire point present?",
+      "extinguisher_present": "Fire extinguisher present?",
+      "fire_equipment_sufficient": "Fire equipment sufficient?",
+      "fire_equipment_complete": "Fire box/fire point visibly has complete and sufficient firefighting equipment, including extinguisher where required?"
+    },
+    "required_checkpoints": [
+      "fire_box_or_fire_point_present",
+      "extinguisher_present",
+      "fire_equipment_sufficient",
+      "fire_equipment_complete"
+    ],
+    "critical_checkpoints": [
+      "fire_box_or_fire_point_present",
+      "fire_equipment_complete"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "fire_box_or_fire_point_present == yes AND fire_equipment_complete == no",
+    "visual_retrieval_text": "fire fighting box, fire extinguisher, empty fire box, fire point equipment",
+    "decision_scope": "visual_screening_only"
+  },
+  {
+    "rule_id": "R-EDG-011-mesh-safety-net",
+    "major_category": "Edge Hazard",
+    "subcategory": "Substandard guardrail construction",
+    "rule_name": "Edge, opening or scaffold protective mesh / safety net missing, removed or unfixed",
+    "visual_checkpoints": {
+      "mesh_or_net_protection_required": "Mesh/safety-net protection required?",
+      "mesh_or_net_present": "Mesh or safety net present?",
+      "mesh_or_net_fixed": "Mesh/safety net fixed?",
+      "mesh_or_net_damaged_or_removed": "Mesh/safety net damaged or removed?",
+      "mesh_or_net_protection_sufficient": "Required mesh/safety-net protection visibly present, fixed and not damaged or removed?"
+    },
+    "required_checkpoints": [
+      "mesh_or_net_protection_required",
+      "mesh_or_net_present",
+      "mesh_or_net_fixed",
+      "mesh_or_net_damaged_or_removed",
+      "mesh_or_net_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "mesh_or_net_protection_required",
+      "mesh_or_net_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "mesh_or_net_protection_required == yes AND mesh_or_net_protection_sufficient == no",
+    "visual_retrieval_text": "protective mesh, safety net, torn safety net, unfixed net, stair edge net",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-EDG-012-passage-shed-protection",
+    "major_category": "Edge Hazard",
+    "subcategory": "Hoist / unloading platform / passage-opening edge",
+    "rule_name": "Safe passage, anti-smash shed or cantilever protective shed missing, damaged or not restored",
+    "visual_checkpoints": {
+      "protective_passage_or_shed_present": "Protective passage or shed present?",
+      "falling_object_risk_present": "Struck-by-object risk present?",
+      "shed_protection_complete": "Shed/passage protection intact?",
+      "shed_protection_restored": "Restored after removal/damage?",
+      "passage_shed_protection_sufficient": "Protective passage/shed visibly complete and restored where falling-object risk exists?"
+    },
+    "required_checkpoints": [
+      "protective_passage_or_shed_present",
+      "falling_object_risk_present",
+      "shed_protection_complete",
+      "shed_protection_restored",
+      "passage_shed_protection_sufficient"
+    ],
+    "critical_checkpoints": [
+      "protective_passage_or_shed_present",
+      "falling_object_risk_present",
+      "passage_shed_protection_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "protective_passage_or_shed_present == yes AND falling_object_risk_present == yes AND passage_shed_protection_sufficient == no",
+    "visual_retrieval_text": "safe passage shed, anti-smash shed, cantilever protective shed, damaged protective shed",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-OPN-011-manhole-trench-cover",
+    "major_category": "Opening Hazard",
+    "subcategory": "Sump / pit / cable trench / manhole cover",
+    "rule_name": "Manhole cover, trench cover or rain grate damaged, opened or missing and not restored",
+    "visual_checkpoints": {
+      "manhole_or_trench_cover_required": "Manhole/trench/rain-grate location present?",
+      "cover_present": "Cover or manhole lid present?",
+      "cover_intact": "Cover/lid intact?",
+      "cover_restored": "Promptly restored after opening?",
+      "fall_or_trip_risk_present": "Fall or trip risk present?",
+      "manhole_trench_cover_sufficient": "Manhole/trench opening visibly has cover protection that is present, intact and restored where fall/trip risk exists?"
+    },
+    "required_checkpoints": [
+      "manhole_or_trench_cover_required",
+      "cover_present",
+      "cover_intact",
+      "cover_restored",
+      "fall_or_trip_risk_present",
+      "manhole_trench_cover_sufficient"
+    ],
+    "critical_checkpoints": [
+      "manhole_or_trench_cover_required",
+      "fall_or_trip_risk_present",
+      "manhole_trench_cover_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "manhole_or_trench_cover_required == yes AND fall_or_trip_risk_present == yes AND manhole_trench_cover_sufficient == no",
+    "visual_retrieval_text": "manhole cover, trench cover, rain grate, open trench, broken cover plate",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-012-improper-attire-ppe",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper attire / missing PPE",
+    "rule_name": "Site personnel without hi-vis clothing/vest, or wearing shorts, slippers or other improper attire",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "construction_site_context": "On a construction site?",
+      "high_visibility_clothing_required": "Hi-vis clothing/vest required?",
+      "high_visibility_clothing_present": "Hi-vis clothing/vest worn?",
+      "unsafe_clothing_present": "Shorts/slippers or other improper attire present?",
+      "ppe_attire_violation_visible": "Any site-attire/PPE violation visibly present (required high-visibility clothing missing or unsafe clothing worn)?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "high_visibility_clothing_required",
+      "high_visibility_clothing_present",
+      "unsafe_clothing_present",
+      "ppe_attire_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "ppe_attire_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND construction_site_context == yes AND ppe_attire_violation_visible == yes",
+    "visual_retrieval_text": "construction worker, worker in shorts, worker in slippers, hi-vis workwear",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-CIV-016-cable-on-ground",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Temporary electricity & cable management",
+    "rule_name": "Cables on the ground, crossing passages, or noncompliant temporary-power cabling management",
+    "visual_checkpoints": {
+      "temporary_cable_present": "Temporary cable present?",
+      "cable_on_ground": "Cable lying on the ground?",
+      "cable_crossing_passage": "Cable crossing person/vehicle passage?",
+      "cable_protected_or_elevated": "Cable elevated or protected?",
+      "trip_or_electric_risk_present": "Trip or electric-shock risk present?",
+      "cable_trip_or_electric_violation_visible": "Temporary cable visibly creates a trip/electric risk due to ground laying, crossing passage, or lack of protection/elevation?"
+    },
+    "required_checkpoints": [
+      "temporary_cable_present",
+      "cable_on_ground",
+      "cable_crossing_passage",
+      "cable_protected_or_elevated",
+      "trip_or_electric_risk_present",
+      "cable_trip_or_electric_violation_visible"
+    ],
+    "critical_checkpoints": [
+      "temporary_cable_present",
+      "trip_or_electric_risk_present",
+      "cable_trip_or_electric_violation_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "temporary_cable_present == yes AND trip_or_electric_risk_present == yes AND cable_trip_or_electric_violation_visible == yes",
+    "visual_retrieval_text": "temporary cable on ground, cable crossing passage, trailing power cable, elevated cable on tray, conduit-protected cable",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-013-damaged-lifting-gear",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Improper use of machinery / lifting gear / forklift",
+    "rule_name": "Lifting gear or rigging damaged or meeting scrap criteria but still in use",
+    "visual_checkpoints": {
+      "lifting_gear_present": "Lifting gear or rigging present?",
+      "lifting_gear_damaged": "Lifting gear/rigging damaged?",
+      "scrap_condition_met": "Scrap condition met?",
+      "still_in_use": "Still in use?",
+      "lifting_gear_defect_visible": "Lifting gear visibly damaged or in scrap condition while still in use?"
+    },
+    "required_checkpoints": [
+      "lifting_gear_present",
+      "lifting_gear_damaged",
+      "scrap_condition_met",
+      "still_in_use",
+      "lifting_gear_defect_visible"
+    ],
+    "critical_checkpoints": [
+      "lifting_gear_present",
+      "still_in_use",
+      "lifting_gear_defect_visible"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "lifting_gear_present == yes AND still_in_use == yes AND lifting_gear_defect_visible == yes",
+    "visual_retrieval_text": "lifting rigging, sling or wire rope, damaged lifting gear, frayed sling, worn shackle, crane hook",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-CIV-017-warning-reflective-marking",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Edge, opening, hoarding or post lacking warning paint, reflective strip/film or other warning marking",
+    "visual_checkpoints": {
+      "warning_mark_required": "Warning/reflective marking required?",
+      "warning_mark_present": "Warning marking present?",
+      "reflective_mark_present": "Reflective strip/film present?",
+      "mark_visible": "Marking clearly visible?",
+      "warning_marking_sufficient": "Required warning or reflective marking visibly present and legible/visible enough for the hazard area?"
+    },
+    "required_checkpoints": [
+      "warning_mark_required",
+      "warning_mark_present",
+      "reflective_mark_present",
+      "mark_visible",
+      "warning_marking_sufficient"
+    ],
+    "critical_checkpoints": [
+      "warning_mark_required",
+      "warning_marking_sufficient"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "warning_mark_required == yes AND warning_marking_sufficient == no",
+    "visual_retrieval_text": "red-white warning paint, reflective strip, hazard warning post, exposed edge or step, ramp edge, hoarding panel",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-BHV-014-habitual-violation-poor-behavior",
+    "major_category": "Unsafe Behavior",
+    "subcategory": "Habitual violation / poor on-site behavior",
+    "rule_name": "Site personnel habitual violations, poor safety awareness or improper on-site behavior",
+    "visual_checkpoints": {
+      "person_present": "Person present?",
+      "construction_site_context": "On a construction site?",
+      "irregular_behavior_present": "Violation or improper behavior present (off-post, resting in hazard zone, unsafe positioning, etc.)?",
+      "specific_violation_identified": "Specific violation type identifiable?"
+    },
+    "required_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "irregular_behavior_present",
+      "specific_violation_identified"
+    ],
+    "critical_checkpoints": [
+      "person_present",
+      "construction_site_context",
+      "irregular_behavior_present"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "person_present == yes AND construction_site_context == yes AND irregular_behavior_present == yes",
+    "visual_retrieval_text": "worker resting on site, person napping on site, unsafe worker behavior, person in hazard zone",
+    "decision_scope": "normative_decision_available"
+  },
+  {
+    "rule_id": "R-CIV-018-poor-overall-housekeeping",
+    "major_category": "Civilized Construction Hazard",
+    "subcategory": "Site image / signage / reflective measures",
+    "rule_name": "Poor overall housekeeping: dirty/disorderly site appearance or substandard civilized construction",
+    "visual_checkpoints": {
+      "construction_site_context": "On a construction site?",
+      "site_appearance_poor": "Site appearance dirty/disorderly or housekeeping clearly substandard?",
+      "specific_civil_defect_identified": "Specific housekeeping-defect type identifiable?"
+    },
+    "required_checkpoints": [
+      "construction_site_context",
+      "site_appearance_poor",
+      "specific_civil_defect_identified"
+    ],
+    "critical_checkpoints": [
+      "construction_site_context",
+      "site_appearance_poor"
+    ],
+    "critical_checkpoints_status": "human_reviewed",
+    "visual_screening_rule": "construction_site_context == yes AND site_appearance_poor == yes",
+    "visual_retrieval_text": "messy construction site, dirty disorderly site, poor housekeeping, scattered debris, tidy clean site",
+    "decision_scope": "normative_decision_available"
+  }
+]

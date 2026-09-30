@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rules_schema_en.json",
+  "title": "Construction Safety Visual Screening Rules (English, R-CES subset)",
+  "description": "Schema for data/rule/rule.json: the self-contained English rule library this benchmark conditions on, reduced to the fields the R-CES line consumes. Auxiliary normative fields used by other compliance pipelines are intentionally omitted from this projection.",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "#/$defs/rule"
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule_id",
+        "major_category",
+        "subcategory",
+        "rule_name",
+        "visual_checkpoints",
+        "required_checkpoints",
+        "critical_checkpoints",
+        "critical_checkpoints_status",
+        "visual_screening_rule",
+        "visual_retrieval_text",
+        "decision_scope"
+      ],
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable rule identifier used by matched_rule_id. Do not rename without migrating annotations."
+        },
+        "major_category": {
+          "type": "string",
+          "enum": [
+            "Opening Hazard",
+            "Edge Hazard",
+            "Unsafe Behavior",
+            "Civilized Construction Hazard"
+          ]
+        },
+        "subcategory": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_checkpoints": {
+          "type": "object",
+          "description": "Fields a VLM or human reviewer can inspect visually from a single image.",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required_checkpoints": {
+          "type": "array",
+          "description": "Materialized list of every visual_checkpoints key for this rule. MUST stay in sync with the keys of visual_checkpoints (same set, validated by validate_rces_pairs.py). Observation-layer fields observed_checkpoints / missing_checkpoints in the pair file may only reference values from this list.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "critical_checkpoints": {
+          "type": "array",
+          "description": "Subset of required_checkpoints that gate the single-image screening conclusion: if any of these cannot be observed, the image alone cannot yield a screening verdict and the pair should be abstained/undecidable. AI-proposed from visual_screening_rule; may be empty for requires_external_evidence rules whose undecidability comes from non_visual_fields rather than missing visual checkpoints.",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "critical_checkpoints_status": {
+          "type": "string",
+          "description": "Provenance of critical_checkpoints: ai_proposed_needs_human_review before a human confirms the critical set, human_reviewed once confirmed.",
+          "enum": [
+            "ai_proposed_needs_human_review",
+            "human_reviewed"
+          ]
+        },
+        "non_visual_fields": {
+          "type": "object",
+          "description": "Optional. Fields that bear on the rule but cannot be reliably decided from a single image (e.g. a material's identification label), so they are deliberately kept OUT of visual_checkpoints / required_checkpoints and need human/on-site or external evidence. Observation-layer checkpoint lists never reference these keys.",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["description", "source", "required_for_normative_decision", "use_in_current_experiment"],
+            "properties": {
+              "description": {"type": "string", "minLength": 1},
+              "source": {"type": "array", "items": {"type": "string", "minLength": 1}},
+              "required_for_normative_decision": {"type": "boolean"},
+              "use_in_current_experiment": {"type": "boolean"}
+            }
+          }
+        },
+        "visual_screening_rule": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Single-image risk screening expression using visible checkpoints only."
+        },
+        "visual_retrieval_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Encoder-facing scene-anchor text for image-rule similarity search and RAG-style candidate generation; it describes visible objects, components, PPE, protective elements, passages, openings, edges, equipment, and coarse visual states only, and is not a human label or compliance-decision field."
+        },
+        "decision_scope": {
+          "type": "string",
+          "enum": [
+            "visual_screening_only",
+            "requires_external_evidence",
+            "normative_decision_available"
+          ]
+        }
+      }
+    }
+  }
+}

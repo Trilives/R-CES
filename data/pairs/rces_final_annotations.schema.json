@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rces_final_annotations.schema.json",
+  "title": "R-CES Final Image-Rule Annotation (unified)",
+  "description": "ONE record shape for every annotated image-rule pair, used by BOTH the human gold file (rces_pilot_pairs.jsonl, source=human) and the isolated model full-pipeline baseline (rces_qwen_full_baseline.jsonl, source=model_full -- a generic model-baseline token, with the actual model in `model`). The `source` field discriminates the two; the files stay physically separate so the Stage-1 interactive tool only ever reads/writes gold and model output can never leak into ground truth. Judgment fields accept the placeholder 'to_be_annotated' so a freshly seeded gold row (annotation_status=pending) also validates; the stricter semantic invariants (observed/missing subset of the rule's required_checkpoints and disjoint, critical_missing = missing INTERSECT critical, no baseline value reflow into gold) are enforced by tmp/validate_rces_pairs.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pair_id",
+    "image_id",
+    "image_split",
+    "rule_id",
+    "rule_name",
+    "major_category",
+    "subcategory",
+    "decision_scope",
+    "rule_role",
+    "image_weak_label",
+    "weak_candidate_category",
+    "decidability",
+    "compliance_label",
+    "image_quality",
+    "evidence_sufficiency_label",
+    "observed_checkpoints",
+    "missing_checkpoints",
+    "critical_missing_checkpoints",
+    "visual_evidence",
+    "missing_information",
+    "source",
+    "annotation_status",
+    "double_annotation"
+  ],
+  "properties": {
+    "pair_id": { "type": "string", "pattern": "^rces_(pilot|crop|enhance)_[0-9]{6}$", "description": "rces_pilot_* = gold/baseline pairs; rces_crop_* = isolated crop-augmentation training samples; rces_enhance_* = test-set expansion candidates." },
+    "image_id": { "type": "string", "pattern": "^img_[0-9]+\\.(jpg|jpeg|png|bmp|webp|tiff)$" },
+    "image_split": {
+      "type": "string",
+      "enum": ["development_subset", "train", "val", "test", "realistic_test", "test_balanced", "test_expansion"]
+    },
+    "rule_id": { "type": "string", "minLength": 1, "description": "Must reference an existing rule_id in data/rule/rule.json." },
+    "rule_name": { "type": "string", "minLength": 1 },
+    "major_category": { "$ref": "#/$defs/major_category" },
+    "subcategory": { "type": "string", "minLength": 1 },
+    "decision_scope": {
+      "type": "string",
+      "enum": ["visual_screening_only", "requires_external_evidence", "normative_decision_available"]
+    },
+    "rule_role": {
+      "type": "string",
+      "enum": ["target", "related", "not_applicable", "possibly_undecidable"],
+      "description": "Candidate-selection provenance from rule-retrieval construction; not a visual label and not an ESC feature."
+    },
+    "image_weak_label": {
+      "type": "string",
+      "enum": ["compliant", "non_compliant"],
+      "description": "Selection-provenance weak label; not an ESC feature."
+    },
+    "weak_candidate_category": {
+      "$ref": "#/$defs/major_category",
+      "description": "Legacy provenance slot. Under SigLIP2 pair generation this stores the target rule category, not a weak-label-derived category."
+    },
+    "decidability": {
+      "type": "string",
+      "enum": ["to_be_annotated", "decidable", "partially_decidable", "undecidable"],
+      "description": "decidable = single image settles it (incl. rule not applicable). partially_decidable = a critical checkpoint is unresolved in this image. undecidable = rule needs non-visual evidence. 'to_be_annotated' only while annotation_status=pending."
+    },
+    "compliance_label": {
+      "type": "string",
+      "enum": ["to_be_annotated", "compliant", "non_compliant", "not_applicable", "unknown"],
+      "description": "not_applicable = subject absent (a decidable decision). unknown pairs with partially_decidable / undecidable. 'to_be_annotated' only while pending."
+    },
+    "image_quality": {
+      "type": "string",
+      "enum": ["to_be_annotated", "good", "usable", "poor"]
+    },
+    "evidence_sufficiency_label": {
+      "type": "string",
+      "enum": ["to_be_annotated", "sufficient", "partial", "insufficient"],
+      "description": "ESC's named gold, DERIVED from decidability (codebook §7: decidable->sufficient, partially_decidable->partial, undecidable->insufficient) and validated by tmp/validate_rces_pairs.py; never hand-typed. 'to_be_annotated' only while pending."
+    },
+    "observed_checkpoints": {
+      "$ref": "#/$defs/checkpoint_list",
+      "description": "Checkpoint keys readable from this image. Subset of the rule's required_checkpoints; disjoint from missing_checkpoints (enforced by validate_rces_pairs.py)."
+    },
+    "missing_checkpoints": {
+      "$ref": "#/$defs/checkpoint_list",
+      "description": "Checkpoint keys unresolved in this image. Subset of required_checkpoints; disjoint from observed_checkpoints."
+    },
+    "critical_missing_checkpoints": {
+      "$ref": "#/$defs/checkpoint_list",
+      "description": "Derived, never hand-filled: missing_checkpoints INTERSECT rule.critical_checkpoints."
+    },
+    "visual_evidence": {
+      "$ref": "#/$defs/string_list",
+      "description": "Visible facts supporting the annotation. For gold these are filled in Stage 2 under locked judgment; empty while pending/judged."
+    },
+    "missing_information": {
+      "$ref": "#/$defs/string_list",
+      "description": "Key information missing for the visual-screening conclusion."
+    },
+    "source": {
+      "type": "string",
+      "enum": ["human", "model_full"],
+      "description": "human = human Stage-1 judgment, the ground truth (any later free-text in visual_evidence/missing_information is post-processing under the locked judgment, not gold supervision). model_full = a model did everything (full-pipeline baseline; the actual model is recorded in `model`), never ground truth."
+    },
+    "annotation_status": {
+      "type": "string",
+      "enum": ["pending", "judged", "described", "reviewed", "model_complete"],
+      "description": "Gold workflow: pending -> judged -> described -> reviewed. Baseline rows are always model_complete."
+    },
+    "double_annotation": {
+      "type": "boolean",
+      "description": "True for the ~20% double-annotated gold subset (prioritising partially_decidable and requires_external_evidence). Always false for baseline rows."
+    },
+
+    "annotator_id": { "type": "string", "minLength": 1, "description": "Stage 1 (gold)." },
+    "annotation_seconds": { "type": "number", "minimum": 0, "description": "Stage 1 per-pair time (gold)." },
+    "description_model": { "type": ["string", "null"], "description": "Stage 2 model (gold)." },
+    "description_is_dry_run": { "type": "boolean", "description": "Stage 2 dry-run flag (gold)." },
+    "description_flag_conflict": { "type": "boolean", "description": "Stage 2 raised FLAG_CONFLICT for human review (gold)." },
+    "description_conflict_note": { "type": "string", "description": "Stage 2 conflict explanation (gold)." },
+    "review_status": { "type": "string", "enum": ["final", "needs_review", "adjudicated"] },
+    "annotation_notes": { "type": "string" },
+
+    "model": { "type": ["string", "null"], "description": "Stage 3 model (baseline)." },
+    "is_dry_run": { "type": "boolean", "description": "Stage 3 dry-run flag (baseline)." },
+    "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1, "description": "Stage 3 model self-confidence (baseline); MaxProb signal." },
+    "rationale": { "type": "string", "description": "Stage 3 one-line model rationale (baseline)." },
+    "warning": { "type": "string", "description": "Stage 3 isolation reminder (baseline)." },
+
+    "base_image_id": { "type": "string", "pattern": "^img_[0-9]+\\.(jpg|jpeg|png|bmp|webp|tiff)$", "description": "Crop-augmentation only: the train-split mother image this crop was cut from." },
+    "crop_bbox": { "type": "array", "items": { "type": "number" }, "minItems": 4, "maxItems": 4, "description": "Crop-augmentation only: [left, top, right, bottom] pixel box of the crop in the mother image." },
+    "augmentation": { "type": "string", "enum": ["random_crop"], "description": "Crop-augmentation provenance tag (source stays human; these rows are train-only, never gold, never evaluated)." },
+    "retrieval_method": { "type": "string", "enum": ["siglip2", "vlm_hierarchical"], "description": "Crop-augmentation only: which retriever bound this crop's rule. SigLIP-224 runs first; crops it does NOT call an opening are re-judged by the 9B VLM." },
+    "retrieval_score": { "type": "number", "description": "Crop-augmentation only: the binding retriever's score for this (crop, rule) — SigLIP cosine similarity or the VLM hierarchical rank score." }
+  },
+  "$defs": {
+    "major_category": {
+      "type": "string",
+      "enum": ["Opening Hazard", "Edge Hazard", "Unsafe Behavior", "Civilized Construction Hazard"]
+    },
+    "string_list": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "checkpoint_list": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

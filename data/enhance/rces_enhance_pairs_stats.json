@@ -1,0 +1,87 @@
+{
+  "random_seed": 20260617,
+  "image_split": "test_expansion",
+  "pair_selection_method": "siglip2_similarity",
+  "siglip2_model_id": "google/siglip2-base-patch16-224",
+  "siglip2_model_dir": "models/siglip2-base-patch16-224",
+  "siglip2_image_size": 512,
+  "similarity_cache": "tmp/siglip2_pair_generation/similarities_882404a44d559d85.json",
+  "similarity_cache_hit": false,
+  "role_rule_usage": {
+    "target": {
+      "R-CIV-001-hoarding-missing-low": 4,
+      "R-EDG-007-guardrail-height": 2,
+      "R-OPN-005-elevator-shaft-door": 3,
+      "R-BHV-002-no-helmet": 2,
+      "R-OPN-002-medium-opening-protection": 6,
+      "R-OPN-010-opening-protection-not-restored": 4,
+      "R-EDG-001-floor-edge": 8,
+      "R-OPN-009-service-shaft-opening": 1
+    },
+    "related": {
+      "R-CIV-017-warning-reflective-marking": 1,
+      "R-EDG-001-floor-edge": 1,
+      "R-EDG-010-edge-protection-not-restored": 9,
+      "R-CIV-003-material-stacking-labeling": 2,
+      "R-OPN-009-service-shaft-opening": 2,
+      "R-BHV-003-helmet-worn-incorrectly": 2,
+      "R-OPN-010-opening-protection-not-restored": 6,
+      "R-CIV-014-fire-access-blocked": 1,
+      "R-OPN-002-medium-opening-protection": 5,
+      "R-OPN-005-elevator-shaft-door": 1
+    }
+  },
+  "image_count": 30,
+  "pair_count": 60,
+  "pairs_per_image": 2,
+  "distinct_rule_count": 13,
+  "image_label_counts": {
+    "compliant": 3,
+    "non_compliant": 27
+  },
+  "major_category_pair_counts": {
+    "Civilized Construction Hazard": 8,
+    "Edge Hazard": 20,
+    "Opening Hazard": 28,
+    "Unsafe Behavior": 4
+  },
+  "rule_role_counts": {
+    "target": 30,
+    "related": 30
+  },
+  "selected_images": [
+    "img_0026.jpg",
+    "img_0032.jpg",
+    "img_0052.jpg",
+    "img_0104.jpg",
+    "img_0106.jpg",
+    "img_0122.jpg",
+    "img_0123.jpg",
+    "img_0138.jpg",
+    "img_0187.jpg",
+    "img_0198.jpg",
+    "img_0207.jpg",
+    "img_0229.jpg",
+    "img_0242.jpg",
+    "img_0244.jpg",
+    "img_0279.jpg",
+    "img_0280.jpg",
+    "img_0282.jpg",
+    "img_0284.jpg",
+    "img_0285.jpg",
+    "img_0287.jpg",
+    "img_0296.jpg",
+    "img_0304.jpg",
+    "img_0312.jpg",
+    "img_0313.jpg",
+    "img_0319.jpg",
+    "img_0324.jpg",
+    "img_0330.jpg",
+    "img_0339.jpg",
+    "img_0354.jpg",
+    "img_0355.jpg"
+  ],
+  "image_source_policy": "Images stay in data/images and are referenced in place (not copied).",
+  "weak_label_policy": "image_weak_label is baked once from the repo-root image_mapping.csv (provenance only); it is not used for rule selection.",
+  "annotation_policy": "Judgment fields are placeholders; no visual annotation is performed during pair generation."
+}

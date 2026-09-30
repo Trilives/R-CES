@@ -327,7 +327,7 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python <script>
 
 | paper | script | artifact |
 |---|---|---|
-| Tab 1 (IAA) | `tmp/compute_iaa.py` | `cache/iaa_report.json` (κ per field + disagreement list) |
+| Tab 1 (IAA) | `tmp/compute_iaa.py` | `data/pairs/iaa_report.json` (κ per field + 19-pair disagreement list) |
 | Tab 2: v1 and shuffled-image CIs | `ablation/hierarchical_ci.py` → `ablation/recompute_ci.py` | `hierarchical_frames_cropaug.json` → `within_stratum_ci_cropaug.json` |
 | Tab 2: text-only / image-only; crops vs originals | `ablation/evidence_controls.py` | `evidence_controls_cropaug.json` |
 | Tab 2: v2 | `rces-2/within_stratum.py` | `v2_within_stratum_cropaug.json` |

@@ -22,7 +22,7 @@ import rces_io as aio  # noqa: E402
 
 # ---- Run controls ------------------------------------------------------------
 CATEGORICAL_FIELDS = ("decidability", "compliance_label", "image_quality", "evidence_sufficiency_label")
-REPORT_PATH = aio.CACHE_DIR / "iaa_report.json"
+REPORT_PATH = aio.PAIRS_DIR / "iaa_report.json"
 MAX_DISAGREEMENTS_SHOWN = 40
 # ------------------------------------------------------------------------------
 

@@ -1,0 +1,337 @@
+{
+  "n_compared": 200,
+  "fields": {
+    "decidability": {
+      "kappa": 0.9420385857414922,
+      "observed_agreement": 0.965,
+      "n": 200
+    },
+    "compliance_label": {
+      "kappa": 0.9329822881761607,
+      "observed_agreement": 0.965,
+      "n": 200
+    },
+    "image_quality": {
+      "kappa": 0.6202313136544101,
+      "observed_agreement": 0.945,
+      "n": 200
+    },
+    "evidence_sufficiency_label": {
+      "kappa": 0.9420385857414922,
+      "observed_agreement": 0.965,
+      "n": 200
+    },
+    "critical_missing_checkpoint": {
+      "kappa": 0.8617511520737328,
+      "observed_agreement": 0.9586206896551724,
+      "n": 290
+    }
+  },
+  "disagreements": [
+    {
+      "pair_id": "rces_pilot_000077",
+      "rule_id": "R-OPN-002-medium-opening-protection",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "compliant"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "horizontal_opening_present"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000078",
+      "rule_id": "R-OPN-010-opening-protection-not-restored",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "compliant"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "opening_present"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000084",
+      "rule_id": "R-BHV-007-illegal-electrical-work",
+      "diffs": {
+        "critical_missing_checkpoints": [
+          [
+            "electrical_safety_violation_visible"
+          ],
+          [
+            "electrical_safety_violation_visible",
+            "electrical_work_present"
+          ]
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000187",
+      "rule_id": "R-BHV-008-machinery-area-not-cleared",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "not_applicable"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "person_in_danger_zone"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000201",
+      "rule_id": "R-BHV-003-helmet-worn-incorrectly",
+      "diffs": {
+        "image_quality": [
+          "poor",
+          "usable"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000204",
+      "rule_id": "R-CIV-006-tsp-exceedance",
+      "diffs": {
+        "image_quality": [
+          "poor",
+          "usable"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000244",
+      "rule_id": "R-CIV-006-tsp-exceedance",
+      "diffs": {
+        "image_quality": [
+          "good",
+          "usable"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000260",
+      "rule_id": "R-CIV-013-temporary-facilities",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000275",
+      "rule_id": "R-BHV-001-no-harness-at-height",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "not_applicable"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "fall_protection_sufficient",
+            "near_edge_or_opening",
+            "person_present"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000319",
+      "rule_id": "R-CIV-003-material-stacking-labeling",
+      "diffs": {
+        "critical_missing_checkpoints": [
+          [
+            "material_management_sufficient",
+            "materials_present"
+          ],
+          [
+            "material_management_sufficient"
+          ]
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000385",
+      "rule_id": "R-OPN-010-opening-protection-not-restored",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000386",
+      "rule_id": "R-OPN-002-medium-opening-protection",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000388",
+      "rule_id": "R-BHV-007-illegal-electrical-work",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000417",
+      "rule_id": "R-OPN-005-elevator-shaft-door",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "non_compliant"
+        ],
+        "image_quality": [
+          "usable",
+          "good"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "elevator_shaft_door_protection_sufficient"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000420",
+      "rule_id": "R-CIV-010-dormitory-noncompliant",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000424",
+      "rule_id": "R-CIV-013-temporary-facilities",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000610",
+      "rule_id": "R-CIV-003-material-stacking-labeling",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "not_applicable"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "material_management_sufficient"
+          ],
+          []
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000632",
+      "rule_id": "R-CIV-009-noise-exceedance",
+      "diffs": {
+        "image_quality": [
+          "usable",
+          "good"
+        ]
+      }
+    },
+    {
+      "pair_id": "rces_pilot_000638",
+      "rule_id": "R-CIV-001-hoarding-missing-low",
+      "diffs": {
+        "decidability": [
+          "partially_decidable",
+          "decidable"
+        ],
+        "compliance_label": [
+          "unknown",
+          "not_applicable"
+        ],
+        "evidence_sufficiency_label": [
+          "partial",
+          "sufficient"
+        ],
+        "critical_missing_checkpoints": [
+          [
+            "hoarding_protection_sufficient",
+            "site_boundary_present"
+          ],
+          []
+        ]
+      }
+    }
+  ]
+}

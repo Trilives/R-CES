@@ -12,11 +12,10 @@ is meaningful and the abstention labels stay clean. This document is paper-
 appendix material: it must read as a reproducible protocol, not a sketch.
 
 Companion files:
-- `README.md` — the governing plan and the three contributions this benchmark serves.
+- `README.md` — package entry point: layout, environment and reproduction steps.
 - `data/pairs/fields.md` — the field-by-field schema reference.
 - `Prompt/preannotation_prompt.md` — the neutral model prompt; its decision procedure mirrors this codebook (same vocabulary, same order). When the two ever diverge, **this codebook wins** for gold annotation.
 - `data/pairs/rces_final_annotations.schema.json` + `tmp/validate_rces_pairs.py` — the structural/derivation invariants enforced mechanically.
-- `annotation_case_studies.md` — narrative, story-driven walk-through of the recurring hard cases (each tagged back to the section / worked example here). Teaching aid, not normative; this codebook still wins.
 
 ---
 
@@ -373,7 +372,7 @@ for a visually-decidable rule no critical *visual* checkpoint is `missing`; for 
 principally-non-visual rule the `undecidable`/insufficient comes from the rule
 side, not from a missing checkpoint). The dense supervision is the per-checkpoint
 resolvability from your marks (`observed`/`not_applicable` → resolvable=1,
-`missing` → 0). See `README.md` Contribution 3 / Step 7 for how the calibrator consumes this.
+`missing` → 0). See `experiments/README.md` §Method for how the head consumes this.
 
 ---
 

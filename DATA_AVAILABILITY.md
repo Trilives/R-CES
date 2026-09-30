@@ -11,6 +11,8 @@ omitted directories at the paths the code already expects.
 - **Annotations** — `data/pairs/`:
   - `rces_pilot_pairs.jsonl` — human gold (`source=human`), 1000 image–rule pairs.
   - `rces_double_annotation.jsonl` — independent second-annotator subset (IAA).
+  - `iaa_report.json` — Cohen's κ per field over the 200 double-annotated pairs,
+    plus the 19-pair disagreement list (regenerate with `tmp/compute_iaa.py`).
   - `rces_crop_augmentation.jsonl` — 334 human-screened crop pairs.
   - `rces_qwen_full_baseline.jsonl` — isolated model baseline (`source=model_full`),
     never ground truth.

@@ -130,3 +130,10 @@ judgment → model adds description → human reviews**, so model narration can 
 anchor the gold labels; `codebook.md` is the authoritative manual. Gold (`source=human`) and the isolated model baseline
 (`source=model_full`) share one record shape (`rces_final_annotations.schema.json`)
 but live in two physical files so the baseline can never contaminate gold.
+
+## License
+
+Code and documentation: [MIT](LICENSE). Annotations, rule library, splits, IAA
+report (`data/`) and the annotation codebook (`codebook.md`):
+[CC BY 4.0](LICENSE-DATA). Source images are not distributed here and are not
+covered by either license.

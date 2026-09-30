@@ -27,6 +27,9 @@ omitted directories at the paths the code already expects.
 - All annotation identifiers are pseudonymous (`annotator_1`, `annotator_2`); image
   identifiers are anonymized (`img_NNNNNN`).
 
+Everything under `data/` and `codebook.md` is licensed CC BY 4.0 (`LICENSE-DATA`);
+the code is MIT (`LICENSE`).
+
 ## Not included (regenerable or obtained separately)
 
 | Path (created/used by the code) | Why omitted | How to obtain |

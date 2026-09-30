@@ -5,7 +5,10 @@ English rule library this benchmark conditions on. Each rule is reduced to the
 fields the R-CES line actually consumes; auxiliary normative fields used by other
 compliance pipelines (e.g. `priority`, `evidence_types`, `thresholds`,
 `machine_rule`, `source_quote`, `rectification_advice`, `normative_rule`,
-`non_visual_fields`) are intentionally omitted from this projection.
+`non_visual_fields`) are intentionally omitted from this projection. The
+rule-level "non-visual in principle" prior is carried by `decision_scope`: pairs
+of `requires_external_evidence` rules are gated to score 0 regardless of the image
+(`experiments/rces/aggregate.py:apply_external_gate`).
 
 ## Field Reference
 

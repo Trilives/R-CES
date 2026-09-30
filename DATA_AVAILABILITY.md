@@ -1,6 +1,6 @@
-# Data availability — what is and isn't in this supplement
+# Data availability — what is and isn't in this repository
 
-This supplement bundles all **code** and all **annotations / labels / rules /
+This repository bundles all **code** and all **annotations / labels / rules /
 splits** needed to understand and re-run the analysis. Large binary assets are
 omitted to keep the package small and because they are either regenerable or
 released separately; the pipeline writes regenerable assets back into the
@@ -18,17 +18,21 @@ omitted directories at the paths the code already expects.
     never ground truth.
   - `benchmark_rule_subset.json`, `rces_final_annotations.schema.json`, `fields.md`.
 - **Rules** — `data/rule/rule.json` (54-rule English library) + schema + field docs.
+  The benchmark's 23 rules were selected from the 55-rule source library; in the
+  released library its stair-edge rule is merged into `R-EDG-003` (roof, balcony,
+  stair or platform edge). All gold pairs are annotated against the released
+  library, which `tmp/validate_rces_pairs.py` enforces.
 - **Splits** — `data/splits/` image-disjoint split lists.
 - **Held-out** — `data/enhance/` test-expansion pairs.
 - All annotation identifiers are pseudonymous (`annotator_1`, `annotator_2`); image
   identifiers are anonymized (`img_NNNNNN`).
 
-## Not included (regenerable or released separately)
+## Not included (regenerable or obtained separately)
 
 | Path (created/used by the code) | Why omitted | How to obtain |
 |---|---|---|
-| `data/images/` | ~6.8 GB anonymized source images | released separately upon publication / on request |
-| `data/images_crops/` | ~122 MB crop images for the augmentation pairs | released separately upon publication / on request |
+| `data/images/` | ~6.8 GB anonymized source images | available from the authors on request |
+| `data/images_crops/` | ~122 MB crop images for the augmentation pairs | available from the authors on request |
 | `models/` | frozen public backbones (SigLIP 2, DINOv2) + local VLMs | download from public model hubs into `models/<name>/` |
 | `cache/` | regenerable frozen-feature cache | rebuilt by `experiments/data/encode_*.py` |
 | `experiments/artifacts/` | regenerable run outputs (heads, predictions, reports) | rebuilt by the train/evaluate/ablation scripts |

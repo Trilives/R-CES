@@ -1,17 +1,31 @@
-# R-CES — supplementary code and data (anonymized)
+# R-CES — checkpoint-level decidability benchmark and evidence-sufficiency scoring
 
-Anonymized supplement for the submission introducing **R-CES** (Rule-conditioned
-Checkpoint Evidence Sufficiency Scoring): a checkpoint-level evidence-sufficiency
-benchmark for rule-conditioned visual compliance, and a light decoupled head that
-predicts *P(evidence sufficient to decide rule r from image x)* rather than
-*P(answer correct)*.
+Code and data for *When Is an Image Enough? A Checkpoint-Level Decidability
+Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance*
+(ACML 2026). **R-CES** (Rule-conditioned Checkpoint Evidence Sufficiency Scoring)
+asks whether an image contains enough evidence to decide a rule, *P(evidence
+sufficient to decide rule r from image x)*, rather than whether an answer is
+likely correct.
 
-The included code, schemas, and compact annotation files are self-contained and
-run against each other without external dependencies. No author-identifying
-information is included; large binary
-assets (images, model weights, feature caches) are not bundled -- see
-`DATA_AVAILABILITY.md`. Reviewer-facing documentation and prompts are in English;
-model-output baselines are preserved verbatim as experimental records.
+The code, schemas and annotation files here are self-contained. Images, model
+weights and feature caches are not bundled (see `DATA_AVAILABILITY.md`). All
+documentation and prompts are in English; model-output baselines are kept verbatim
+as experimental records.
+
+## Benchmark at a glance
+
+| | |
+|---|---|
+| Gold pairs | 1000 image–rule pairs over 250 images, 23 rules |
+| Rule buckets (`decision_scope`) | 8 visual screening / 8 normative / 7 external evidence |
+| Decidability | decidable 825 / undecidable 108 / partially_decidable 67 |
+| Crop augmentation | 334 human-screened crop pairs over 230 crop images |
+| Double annotation | 200 pairs; Cohen's κ 0.942 (decidability), 0.862 (critical-missing checkpoints) |
+| Split | image-disjoint 60/20/20; crops inherit their source image's split |
+
+Labels are human-only: no model output is shown during annotation or used as gold.
+The annotation protocol is `codebook.md`; the κ report and the 19-pair
+disagreement list are `data/pairs/iaa_report.json`.
 
 ## Layout
 
@@ -44,6 +58,7 @@ data/
   pairs/             gold, isolated model baseline, double-annotation, crop aug,
                      23-rule benchmark subset, unified schema, field docs
   rule/              English rule library (54 rules) + schema + field docs
+  SHA256SUMS         checksums of every shipped data file
   splits/            image-disjoint split lists
   enhance/           held-out test-expansion pairs
 codebook.md          authoritative Stage-1 annotation manual
@@ -102,7 +117,8 @@ selects one. A remote OpenAI-compatible (vLLM) endpoint is supported via
 
 ## Data integrity
 
-`uv run python tmp/validate_rces_pairs.py` checks rule-id existence,
+`sha256sum -c data/SHA256SUMS` checks every shipped data file against the hashes
+the reported results were produced from. `uv run python tmp/validate_rces_pairs.py` checks rule-id existence,
 observed/missing ⊆ a rule's required checkpoints (and disjoint), the
 critical-missing relation, schema consistency, and a model→gold leak guard. It
 exits non-zero on any error. The shipped data passes with 0 errors / 0 warnings.

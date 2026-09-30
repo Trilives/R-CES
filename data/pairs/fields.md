@@ -28,9 +28,6 @@ authoritative manual for Stage-1 gold; this file is the schema-level reference.
 - `rces_pilot_pairs_stats.json`: generation statistics for the task file (1000 pairs = 250 development_subset images × 4 roles over the 23 subset rules), including the pair-selection method, SigLIP2 model id, similarity-cache path, and per-role rule usage.
 - `tmp/siglip2_pair_generation/`: local similarity cache for SigLIP2 image-rule retrieval. It is regenerable diagnostic/cache material, not annotation ground truth.
 
-Retired local development material is intentionally not included in this
-anonymous supplement. The current files above are the release surface.
-
 ## Core metadata (immutable, carried into both files)
 
 - `pair_id`: stable image-rule id, e.g. `rces_pilot_000001`.

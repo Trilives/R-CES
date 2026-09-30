@@ -1,5 +1,5 @@
 {
-  "method": "see test/select_rces_benchmark_rules.py docstring and codebook.md",
+  "method": "decision_scope-bucket quota (bucket_quota): all 7 requires_external_evidence rules; for the other two buckets, 2 rules per major_category ranked by 3*image_feasibility + 2*n_critical + occludable_bonus (per-rule scores in details)",
   "bucket_quota": {
     "visual_screening_only": 8,
     "normative_decision_available": 8,

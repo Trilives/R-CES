@@ -21,7 +21,7 @@ available to the model.
 
   RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
   RCES_N_FOLDS=5 RCES_N_SEEDS=3 CUBLAS_WORKSPACE_CONFIG=:4096:8 \
-  UV_CACHE_DIR=/tmp/uv-cache uv run python experiments/ablation/rule_disjoint.py
+  UV_CACHE_DIR=/tmp/uv-cache uv run python R-CES/experiments/ablation/rule_disjoint.py
 """
 
 from __future__ import annotations
@@ -41,6 +41,7 @@ sys.path.insert(0, str(_EXP))
 import numpy as np  # noqa: E402
 
 import config  # noqa: E402
+import exp_io  # noqa: E402
 import metrics  # noqa: E402
 import stratified  # noqa: E402
 from data import dataset as ds  # noqa: E402
@@ -183,16 +184,16 @@ def main() -> None:
             continue
         summary["aggregate"][regime] = {
             "checkpoint_pooled": metrics.bootstrap_auroc(
-                ckpt["score"], ckpt["target"], groups=ckpt["image_id"],
+                ckpt["score"], ckpt["target"], groups=exp_io.original_image_families(ckpt["image_id"]),
                 n_bootstrap=N_BOOTSTRAP),
             "checkpoint_within_key": stratified.bootstrap_stratified_auroc(
-                ckpt["score"], ckpt["target"], ckpt["key"], groups=ckpt["image_id"],
+                ckpt["score"], ckpt["target"], ckpt["key"], groups=exp_io.original_image_families(ckpt["image_id"]),
                 n_bootstrap=N_BOOTSTRAP),
             "pair_pooled": metrics.bootstrap_auroc(
-                pair["score"], pair["target"], groups=pair["image_id"],
+                pair["score"], pair["target"], groups=exp_io.original_image_families(pair["image_id"]),
                 n_bootstrap=N_BOOTSTRAP) if pair["score"] else None,
             "pair_within_rule": stratified.bootstrap_stratified_auroc(
-                pair["score"], pair["target"], pair["rule_id"], groups=pair["image_id"],
+                pair["score"], pair["target"], pair["rule_id"], groups=exp_io.original_image_families(pair["image_id"]),
                 n_bootstrap=N_BOOTSTRAP) if pair["score"] else None,
         }
 

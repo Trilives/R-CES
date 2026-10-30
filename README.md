@@ -7,10 +7,19 @@ asks whether an image contains enough evidence to decide a rule, *P(evidence
 sufficient to decide rule r from image x)*, rather than whether an answer is
 likely correct.
 
-The code, schemas and annotation files here are self-contained. Images, model
-weights and feature caches are not bundled (see `DATA_AVAILABILITY.md`). All
-documentation and prompts are in English; model-output baselines are kept verbatim
-as experimental records.
+The code, annotations and an image-free results archive are included. Verify all
+six paper tables from the archived per-seed scores and Task-2 predictions on a
+CPU, without downloading model weights or running VLMs:
+
+```bash
+uv sync --locked --python 3.13
+uv run --locked python experiments/verify_paper_results.py
+```
+
+[results/acml2026/README.md](results/acml2026/README.md) describes the score schema,
+configurations, hashes and table mapping. For photograph acquisition and crop
+generation, see [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md); for fixed model
+snapshots and hardware/software, see [ENVIRONMENT.md](ENVIRONMENT.md).
 
 ## Benchmark at a glance
 
@@ -48,8 +57,8 @@ src/                 core library (paths/config, IO, metrics, label vocab)
   config.py          all run-controls (module constants; env-var overrides)
   rces_io.py         canonical label vocab, JSONL/rule IO, image encoding hooks
   exp_io.py          experiment data loading (gold + crop augmentation)
-  metrics.py         AUROC / AURC / ECE / image-clustered bootstrap CIs
-  stratified.py      within-stratum AUROC + two-level (seed x image) bootstrap
+  metrics.py         AUROC / AURC / ECE / original-image-family bootstrap CIs
+  stratified.py      within-stratum AUROC + two-level (seed x original-image-family) bootstrap
 experiments/         offline experiments (human gold only)
   rces/              v1 head (checkpoint-resolvability) — train/evaluate
   rces-2/            v2 head (text-context-first) — train/evaluate/ablation/multiseed,
@@ -61,11 +70,14 @@ experiments/         offline experiments (human gold only)
                      scaling, Kamath calibrator), self-evaluation (P(True),
                      verbalized), local-VLM driver, Task-2 cascade + 7-VLM decoupling
   retrieval/         SigLIP2 vs hierarchical-VLM rule retrieval comparison
-  data/              feature encoding (SigLIP2 / DINOv2) + split construction
+  local_vlm/         local/remote VLM runtime and model comparisons
+  data/              feature encoding (SigLIP2 / DINOv2) + split construction;
+                     fixed upstream image acquisition + annotated-crop generation
   figures/           data-driven paper figure (calibration reliability diagrams)
   determinism.py     deterministic-training helper (math SDPA, seeded)
   evaluate_scores.py score any predictor's pair scores on the test split
-Script/              annotation pipeline (LAN web UI, GPT description, model baseline)
+  verify_paper_results.py CPU verification of all six paper tables
+Script/              annotation pipeline (web UI, descriptions, model baseline)
 Prompt/              English prompts (annotation, description, baselines, self-eval)
 tests/               syntax/interface/boundary checks (not a pytest suite)
 tmp/                 reproduction helpers (pair generators, validator, IAA)
@@ -73,9 +85,12 @@ data/
   pairs/             gold, isolated model baseline, double-annotation, crop aug,
                      23-rule benchmark subset, unified schema, field docs
   rule/              English rule library (54 rules) + schema + field docs
+  upstream/          pinned ARGus image mapping, hashes, dimensions and licences
   SHA256SUMS         checksums of every shipped data file
   splits/            image-disjoint split lists
   enhance/           held-out test-expansion pairs
+configs/             pinned model snapshots and validated runtime
+results/acml2026/    per-seed scores, Task-2 predictions, reports, configs and hashes
 codebook.md          authoritative Stage-1 annotation manual
 ```
 
@@ -94,13 +109,21 @@ codebook.md          authoritative Stage-1 annotation manual
 | `RCES_INCLUDE_CROP_AUG` | `1` adds the human-screened crop-augmentation pairs |
 | `RCES_DETERMINISTIC` | `1` (default) forces deterministic training (math SDPA) |
 | `RCES_SEED` / `RCES_N_SEEDS` | base seed / number of seeds for multi-seed drivers |
+| `OMP_NUM_THREADS=2` / `OPENBLAS_NUM_THREADS=1` | CPU thread limits used for the validated head archival runs |
 | `RCES_LOCAL_QWEN_MODEL` | downstream compliance VLM for Task-2 (model dir name) |
 | `RCES_REMOTE_VLM_URL` / `RCES_REMOTE_VLM_ID` | OpenAI-compatible (vLLM) endpoint + served model id for an off-box compliance VLM |
 | `RCES_INPUT_MODE` | `full` (default) \| `text_only` \| `image_only` channel control |
 | `RCES_SHUFFLE_IMAGE_EVAL` / `RCES_SHUFFLE_IMAGE_SEED` | shuffled image->pair assignment at evaluation |
 | `CUBLAS_WORKSPACE_CONFIG=:4096:8` | required for deterministic cuBLAS |
 
-## Reproduction sketch (after providing images + weights, see DATA_AVAILABILITY.md)
+## Reproduction sketch
+
+Set up with [ENVIRONMENT.md](ENVIRONMENT.md); obtain photographs as described in
+[DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) and pinned weights with
+`RCES_MODEL_ACTION=download uv run --locked python experiments/data/download_models.py`.
+The results archive verifies the original numbers independently of public pixels. Every paper float is mapped
+to its command and artifact in [experiments/README.md](experiments/README.md),
+including the separate manuscript-source build for the illustrative figures.
 
 ```bash
 ENV="RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
@@ -156,6 +179,7 @@ but live in two physical files so the baseline can never contaminate gold.
   booktitle = {Proceedings of the Asian Conference on Machine Learning (ACML)},
   series    = {Proceedings of Machine Learning Research},
   publisher = {PMLR},
+  volume    = {353},
   year      = {2026}
 }
 ```
@@ -163,6 +187,6 @@ but live in two physical files so the baseline can never contaminate gold.
 ## License
 
 Code and documentation: [MIT](LICENSE). Annotations, rule library, splits, IAA
-report (`data/`) and the annotation codebook (`codebook.md`):
+report (`data/`), frozen results (`results/`) and the annotation codebook (`codebook.md`):
 [CC BY 4.0](LICENSE-DATA). Source images are not distributed here and are not
 covered by either license.

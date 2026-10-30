@@ -15,6 +15,7 @@ The other figures are TikZ drawings or photos in the paper source, not data plot
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import numpy as np
@@ -51,7 +52,23 @@ CALIB_METHODS = [("raw", "raw", C_BASE, "o"), ("temperature", "temperature", C_V
 
 def fig_calib() -> None:
     """Reliability diagrams before/after validation-fit calibration."""
-    report = json.loads(CALIB_REPORT.read_text())["summary"]["calibration"]
+    archive = Path(os.environ.get("RCES_RESULTS_DIR", str(ART.parents[1] / "results/acml2026")))
+    if (archive / "manifest.json").is_file():
+        import sys
+        sys.path.insert(0, str(ART.parent))
+        from ablation.camera_ready import reliability_bins
+        from verify_paper_results import score_runs
+        runs = score_runs(archive / "scores/v1_siglip2_512")
+        tables = json.loads((archive / "reports/paper_tables.json").read_text())
+        report = {}
+        for block, _ in CALIB_PANELS:
+            report[block] = {"ece": tables["table_3"]["ece"][block], "reliability_pooled": {}}
+            for method, *_ in CALIB_METHODS:
+                scores = [s for run in runs for s in run["result"]["calibration"][block]["_scores"][method]]
+                labels = [y for run in runs for y in run["frames"]["targets"][block]]
+                report[block]["reliability_pooled"][method] = reliability_bins(scores, labels, 10)
+    else:
+        report = json.loads(CALIB_REPORT.read_text())["summary"]["calibration"]
     fig, axes = plt.subplots(1, len(CALIB_PANELS), figsize=(9.0, 2.9), sharey=True)
     for ax, (block, title) in zip(axes, CALIB_PANELS):
         ece = report[block]["ece"]

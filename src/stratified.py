@@ -29,6 +29,7 @@ from collections.abc import Hashable, Sequence
 import numpy as np
 
 from metrics import _auroc
+from exp_io import original_image_families
 
 
 def stratified_auroc(
@@ -95,8 +96,8 @@ def bootstrap_stratified_auroc(
 ) -> dict[str, float | int]:
     """Cluster bootstrap interval for :func:`stratified_auroc`.
 
-    Whole groups (image IDs) are resampled, matching ``metrics.bootstrap_auroc``,
-    so checkpoints sharing an image stay correlated. Replicates in which no
+    Whole original-image families are resampled, matching ``metrics.bootstrap_auroc``
+    callers: originals and their derived crops stay correlated. Replicates in which no
     stratum retains both classes are discarded and counted.
     """
     if aggregation not in {"macro", "pooled"}:
@@ -104,7 +105,7 @@ def bootstrap_stratified_auroc(
     s = np.asarray(scores, dtype=float)
     y = np.asarray(targets, dtype=int)
     stratum_array = np.asarray(strata, dtype=object)
-    group_array = np.asarray(groups, dtype=object)
+    group_array = np.asarray(original_image_families(groups), dtype=object)
 
     index_by_group: dict[Hashable, list[int]] = defaultdict(list)
     for index, group in enumerate(group_array):
@@ -152,8 +153,8 @@ def mean_of_seed_aurocs(
     The estimand is what a deployer gets: train one head with a random seed, run it
     on a fresh sample of test images. Each replicate therefore
 
-      1. draws ONE image bootstrap sample -- shared across seeds, because a single
-         test set is common to every training run;
+      1. draws ONE original-image-family sample shared across seeds, keeping an
+         original and all its crops/checkpoints in the same bootstrap cluster;
       2. draws seeds with replacement;
       3. computes the within-stratum AUROC **separately for each drawn seed**;
       4. averages those per-seed values.
@@ -166,12 +167,18 @@ def mean_of_seed_aurocs(
 
     `per_seed_frames` is a list of dicts with aligned "score", "target",
     "image_id" and `stratum_field` sequences -- one dict per training seed.
+    Optional "family_id" values must agree with the canonical crop ancestry.
     """
     rng = np.random.default_rng(seed)
+    if not per_seed_frames or n_bootstrap <= 0:
+        raise ValueError("At least one seed and a positive bootstrap count are required")
     prepared = []
     for frame in per_seed_frames:
+        families = original_image_families(frame["image_id"])
+        if "family_id" in frame and list(frame["family_id"]) != families:
+            raise ValueError("Frame family_id disagrees with canonical crop ancestry")
         by_image: dict[Hashable, list[int]] = defaultdict(list)
-        for index, image_id in enumerate(frame["image_id"]):
+        for index, image_id in enumerate(families):
             by_image[image_id].append(index)
         prepared.append((
             np.asarray(frame["score"], dtype=float),
@@ -179,7 +186,7 @@ def mean_of_seed_aurocs(
             np.asarray(frame[stratum_field], dtype=object),
             by_image,
         ))
-    images = sorted({i for frame in per_seed_frames for i in frame["image_id"]}, key=repr)
+    images = sorted({i for b in prepared for i in b[3]}, key=repr)
     n_seeds = len(prepared)
 
     values: list[float] = []
@@ -188,7 +195,10 @@ def mean_of_seed_aurocs(
         per_seed: list[float] = []
         for seed_index in rng.integers(0, n_seeds, size=n_seeds):
             scores, targets, strata, by_image = prepared[seed_index]
-            rows = np.concatenate([by_image[img] for img in drawn if img in by_image])
+            selected = [by_image[img] for img in drawn if img in by_image]
+            if not selected:
+                continue
+            rows = np.concatenate(selected)
             value = float(stratified_auroc(scores[rows], targets[rows], strata[rows])["pooled"])
             if not np.isnan(value):
                 per_seed.append(value)
@@ -208,5 +218,9 @@ def mean_of_seed_aurocs(
         "ci_95_high": high,
         "ci_contains_0_5": bool(low <= 0.5 <= high) if len(array) else True,
         "n_seeds": n_seeds,
+        "bootstrap_unit": "original_image_family",
+        "n_families": len(images),
+        "n_image_ids": len({i for frame in per_seed_frames for i in frame["image_id"]}),
+        "requested_bootstrap_samples": n_bootstrap,
         "valid_bootstrap_samples": int(len(array)),
     }

@@ -162,7 +162,7 @@ LOCAL_STRUCTURED_PROMPT_PATH = RCES_ROOT / "Prompt" / "local_structured_prompt.m
 LOCAL_STRUCTURED_DECISION_PROMPT_PATH = RCES_ROOT / "Prompt" / "local_structured_decision_prompt.md"
 LOCAL_STRUCTURED_MAX_NEW_TOKENS = 768
 LOCAL_STRUCTURED_MAX_ATTEMPTS = 2
-# Ablation toggle (Readme step 9 / 必要消融 conditions 1-2 vs 3-4): True routes the
+# Ablation toggle (README step 9 / required ablation conditions 1-2 vs 3-4): True routes the
 # label through checkpoint-guided JSON reasoning followed by A/B/C classification;
 # False uses direct A/B/C/D classification without checkpoint reasoning.
 LOCAL_USE_STRUCTURED = True

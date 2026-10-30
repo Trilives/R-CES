@@ -17,6 +17,7 @@ import os
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 import json  # noqa: E402
+import gzip  # noqa: E402
 import sys  # noqa: E402
 from pathlib import Path  # noqa: E402
 
@@ -28,8 +29,10 @@ sys.path.insert(0, str(EXPERIMENTS_DIR))
 sys.path.insert(0, str(HERE))
 
 import numpy as np  # noqa: E402
+import torch  # noqa: E402
 
 import config  # noqa: E402
+import exp_io  # noqa: E402
 import metrics  # noqa: E402
 import stratified  # noqa: E402
 from data import dataset as ds  # noqa: E402
@@ -77,9 +80,20 @@ def agg(values) -> dict[str, float]:
 
 
 def main() -> None:
+    torch.set_num_threads(int(os.environ.get("RCES_CPU_THREADS", "2")))
     active_device = device()
     per_seed, ckpt_frames, pair_frames = [], [], []
     for seed in range(N_SEEDS):
+        archive = config.ARTIFACT_DIR / f"v2_score_frames{config._CROPAUG_TAG}"
+        cached_path = archive / f"seed_{seed:02d}.json.gz"
+        if cached_path.exists():
+            with gzip.open(cached_path, "rt") as stream:
+                cached = json.load(stream)
+            per_seed.append(cached["result"])
+            ckpt_frames.append(cached["ckpt"])
+            pair_frames.append(cached["pair"])
+            print(f"seed {seed}: loaded archived score frames", flush=True)
+            continue
         config.SEED = seed
         _reset_ablations()
         split = splits.load_split()
@@ -88,6 +102,8 @@ def main() -> None:
         test_records = ds.build_pair_records(set(split["test"]))
         head, _ = train_head(active_device, train_records, val_records)
         ckpt, pair = frames(head, test_records, active_device)
+        for frame in (ckpt, pair):
+            frame["family_id"] = exp_io.original_image_families(frame["image_id"])
         ckpt_frames.append(ckpt)
         pair_frames.append(pair)
         result = {
@@ -99,6 +115,10 @@ def main() -> None:
                 pair["score"], pair["target"], pair["rule_id"])["pooled"]),
         }
         per_seed.append(result)
+        archive = config.ARTIFACT_DIR / f"v2_score_frames{config._CROPAUG_TAG}"
+        archive.mkdir(parents=True, exist_ok=True)
+        with gzip.open(archive / f"seed_{seed:02d}.json.gz", "wt", encoding="utf-8") as stream:
+            json.dump({"seed": seed, "ckpt": ckpt, "pair": pair, "result": result}, stream)
         print(f"seed {seed}: " + " ".join(f"{k}={v:.4f}" for k, v in result.items()))
 
     summary = {k: agg([s[k] for s in per_seed]) for k in per_seed[0]}

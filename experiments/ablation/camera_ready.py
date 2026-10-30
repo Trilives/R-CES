@@ -5,7 +5,7 @@ them from one v1 training per seed, so every number shares the same heads:
 
   * 10-seed Task-1 figures (pooled, within-stratum, gate-on, visual subset);
   * the deployable operating point -- tau selected on validation, applied to
-    test -- with a Wilson interval on the realised risk, per seed and pooled;
+    test -- with descriptive coverage and realised risk per seed;
   * post-hoc calibration (temperature scaling on the logit, isotonic/PAV) fit on validation,
     reporting test ECE before and after, plus reliability-diagram bins;
   * stratification of the insufficient pairs by *cause* (partial vs undecidable,
@@ -27,8 +27,11 @@ import os
 os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
 
 import json  # noqa: E402
+import gzip  # noqa: E402
 import math  # noqa: E402
+import shutil  # noqa: E402
 import sys  # noqa: E402
+from dataclasses import asdict  # noqa: E402
 from pathlib import Path  # noqa: E402
 
 _EXP = Path(__file__).resolve().parents[1]
@@ -51,22 +54,10 @@ N_BOOTSTRAP = int(os.environ.get("RCES_N_BOOTSTRAP", "3000"))
 TAG = config._CROPAUG_TAG
 CROP_PAIR_PREFIX = "rces_crop"
 LOGIT_EPS = 1e-7
-WILSON_Z = 1.96
 EXTERNAL = "requires_external_evidence"
 
 
 # --------------------------------------------------------------------------- stats
-
-def wilson(errors: int, n: int, z: float = WILSON_Z) -> tuple[float, float]:
-    """Wilson score interval for a binomial proportion."""
-    if n == 0:
-        return (float("nan"), float("nan"))
-    p = errors / n
-    denom = 1 + z * z / n
-    centre = (p + z * z / (2 * n)) / denom
-    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / denom
-    return (centre - half, centre + half)
-
 
 def _logit(p: np.ndarray) -> np.ndarray:
     p = np.clip(p, LOGIT_EPS, 1 - LOGIT_EPS)
@@ -178,7 +169,6 @@ def operating_point(test_rows, tau: float, score_field: str) -> dict[str, object
     errors = sum(1 - r.sufficiency_gold for r in answered)
     base_errors = sum(1 - r.sufficiency_gold for r in test_rows)
     n = len(answered)
-    low, high = wilson(errors, n)
     return {
         "tau": float(tau),
         "n_total": len(test_rows),
@@ -186,7 +176,6 @@ def operating_point(test_rows, tau: float, score_field: str) -> dict[str, object
         "errors": int(errors),
         "coverage": n / len(test_rows),
         "risk": errors / n if n else float("nan"),
-        "risk_wilson95": [low, high],
         "base_risk": base_errors / len(test_rows),
     }
 
@@ -221,25 +210,29 @@ def cause_strata(test_rows, gold_by_pair) -> dict[str, object]:
 
 
 def checkpoint_frame(probs, records) -> dict[str, list]:
-    frame = {k: [] for k in ("score", "target", "image_id", "key")}
+    frame = {k: [] for k in ("score", "target", "image_id", "family_id", "pair_id", "key")}
     for record in records:
         for key, target in record.resolvable_targets.items():
             if (record.pair_id, key) in probs:
                 frame["score"].append(probs[(record.pair_id, key)])
                 frame["target"].append(int(target))
                 frame["image_id"].append(record.image_id)
+                frame["family_id"].append(exp_io.original_image_family(record.image_id))
+                frame["pair_id"].append(record.pair_id)
                 frame["key"].append(f"{record.rule_id}::{key}")
     return frame
 
 
 def pair_frame(rows) -> dict[str, list]:
-    frame = {k: [] for k in ("score", "target", "image_id", "rule_id")}
+    frame = {k: [] for k in ("score", "target", "image_id", "family_id", "pair_id", "rule_id")}
     for row in rows:
         if row.decision_scope == EXTERNAL:
             continue
         frame["score"].append(row.visual_sufficiency_score)
         frame["target"].append(int(row.sufficiency_gold))
         frame["image_id"].append(row.image_id)
+        frame["family_id"].append(exp_io.original_image_family(row.image_id))
+        frame["pair_id"].append(row.pair_id)
         frame["rule_id"].append(row.rule_id)
     return frame
 
@@ -317,7 +310,18 @@ def run_seed(device, seed: int, gold_by_pair) -> tuple[dict, dict]:
         "task1_visual": [r.sufficiency_gold for r in vis_test],
         "task2": [int(r.compliance_correct) for r in t2_test],
     }
-    return result, {"ckpt": ckpt, "pair": pair, "targets": targets}
+    frame = {"ckpt": ckpt, "pair": pair, "targets": targets,
+             "validation_rows": [asdict(row) for row in val_rows],
+             "test_rows": [asdict(row) for row in test_rows]}
+    archive_dir = config.ARTIFACT_DIR / f"camera_ready_scores_{config.VISION_ENCODER}{TAG}"
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    with gzip.open(archive_dir / f"seed_{seed:02d}.json.gz", "wt", encoding="utf-8") as stream:
+        json.dump({"seed": seed, "encoder": config.VISION_ENCODER,
+                   "result": result, "frames": frame}, stream, allow_nan=True)
+    # Persist all heads for subsequent permutation checks; weights are not
+    # required for CPU verification of the released per-sample scores.
+    shutil.copy2(config.HEAD_CKPT, archive_dir / f"head_seed_{seed:02d}.pt")
+    return result, frame
 
 
 # ------------------------------------------------------------------------- main
@@ -333,8 +337,6 @@ def summarise(per_seed: list[dict], frames: list[dict]) -> dict[str, object]:
 
     for op in ("op_gate_on_267", "op_gate_on_on_217", "op_visual_tau_217"):
         entries = [s[op] for s in per_seed]
-        answered = sum(e["n_answered"] for e in entries)
-        errors = sum(e["errors"] for e in entries)
         summary[op] = {
             "coverage": agg([e["coverage"] for e in entries]),
             "risk": agg([e["risk"] for e in entries]),
@@ -342,11 +344,10 @@ def summarise(per_seed: list[dict], frames: list[dict]) -> dict[str, object]:
             "seeds_with_risk_le_target": int(sum(
                 1 for e in entries if e["n_answered"] and e["risk"] <= config.TARGET_RISK)),
             "seeds_answering_nothing": int(sum(1 for e in entries if not e["n_answered"])),
-            "pooled_over_seeds": {
-                "answered": answered, "errors": errors,
-                "risk": errors / answered if answered else float("nan"),
-                "risk_wilson95": list(wilson(errors, answered)),
-            },
+            # Seeds reuse the same test images, and pairs within an image are
+            # dependent. These are descriptive seed summaries, not binomial
+            # trials or a confidence interval for deployment risk.
+            "risk_estimator": "descriptive per-seed risk; no risk guarantee",
             "per_seed": entries,
         }
 

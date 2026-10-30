@@ -28,8 +28,8 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from PIL import Image, ImageOps
 
-# R-CES is a self-contained, all-English line: every asset lives under .
-# PROJECT_ROOT therefore points at the package root (this file is src/<name>).
+# R-CES is a self-contained, all-English line: every asset lives under R-CES/.
+# PROJECT_ROOT therefore points at the R-CES root (this file is R-CES/src/<name>).
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 # --- Paths ---
@@ -41,10 +41,9 @@ GOLD_PATH = PAIRS_DIR / "rces_pilot_pairs.jsonl"
 # agreement (tmp/compute_iaa.py).
 DOUBLE_PATH = PAIRS_DIR / "rces_double_annotation.jsonl"
 BASELINE_PATH = PAIRS_DIR / "rces_qwen_full_baseline.jsonl"
-# Crop-augmentation training samples: random crops of train-split mother images,
-# human-screened with the full Stage-1 UI. Isolated from gold and the baseline;
-# train-only, never evaluated (crops are derived from existing images, so putting
-# them in test would be circular evaluation).
+# Human-screened crops of train/validation/test originals. Each crop inherits
+# its parent's split; bootstrap inference clusters originals and crops together.
+# The annotation file is kept separate from pilot gold and the model baseline.
 CROP_AUG_PATH = PAIRS_DIR / "rces_crop_augmentation.jsonl"
 # Test-expansion ("enhance") pairs: extra test-split images (image_split=
 # test_expansion), human-screened with the full Stage-1 UI. Isolated from gold,
@@ -168,7 +167,7 @@ def subject_gate(rule: dict[str, Any]) -> str | None:
 
 # --- Cross-field invariants (codebook §8; one source of truth) -------------
 # Used by the annotation UI to gate inputs (annotate_web.py)
-# and by tmp/validate_rces_pairs.py to guard gold regardless of entry path.
+# and by R-CES/tmp/validate_rces_pairs.py to guard gold regardless of entry path.
 TYPICAL_SUFFICIENCY = {
     "decidable": "sufficient",
     "partially_decidable": "partial",

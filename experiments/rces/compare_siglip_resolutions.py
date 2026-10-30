@@ -22,6 +22,7 @@ sys.path.insert(0, str(_EXP))
 import torch  # noqa: E402
 
 import config  # noqa: E402
+import exp_io  # noqa: E402
 import metrics  # noqa: E402
 from data import dataset as ds  # noqa: E402
 from data import splits  # noqa: E402
@@ -85,8 +86,9 @@ def paired_cluster_bootstrap(
     first = np.asarray(scores_224, dtype=float)
     second = np.asarray(scores_512, dtype=float)
     target = np.asarray(targets, dtype=int)
-    group = np.asarray(image_ids, dtype=object)
-    unique_groups = list(dict.fromkeys(image_ids))
+    families = exp_io.original_image_families(image_ids)
+    group = np.asarray(families, dtype=object)
+    unique_groups = list(dict.fromkeys(families))
     indices_by_group = {
         image_id: np.flatnonzero(group == image_id) for image_id in unique_groups
     }
@@ -170,14 +172,14 @@ def main() -> None:
             "224": metrics.bootstrap_auroc(
                 ckpt_224,
                 ckpt_targets,
-                groups=ckpt_images,
+                groups=exp_io.original_image_families(ckpt_images),
                 n_bootstrap=BOOTSTRAP_SAMPLES,
                 seed=config.SEED,
             ),
             "512": metrics.bootstrap_auroc(
                 ckpt_512,
                 ckpt_targets,
-                groups=ckpt_images,
+                groups=exp_io.original_image_families(ckpt_images),
                 n_bootstrap=BOOTSTRAP_SAMPLES,
                 seed=config.SEED,
             ),
@@ -189,14 +191,14 @@ def main() -> None:
             "224": metrics.bootstrap_auroc(
                 pair_scores_224,
                 pair_targets,
-                groups=pair_images,
+                groups=exp_io.original_image_families(pair_images),
                 n_bootstrap=BOOTSTRAP_SAMPLES,
                 seed=config.SEED,
             ),
             "512": metrics.bootstrap_auroc(
                 pair_scores_512,
                 pair_targets,
-                groups=pair_images,
+                groups=exp_io.original_image_families(pair_images),
                 n_bootstrap=BOOTSTRAP_SAMPLES,
                 seed=config.SEED,
             ),

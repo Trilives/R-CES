@@ -1,0 +1,25 @@
+{
+  "title": "When Is an Image Enough? A Checkpoint-Level Decidability Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance",
+  "description": "R-CES benchmark annotations, codebook, evaluation code and an image-free score archive for verifying the ACML 2026 paper tables. Source photographs are hosted separately by upstream ARGus. Code: MIT; annotations and result data: CC BY 4.0.",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Jiang, Xingpeng",
+      "affiliation": "School of Computer Science and Technology, Harbin Institute of Technology, Shenzhen"
+    },
+    {
+      "name": "Wang, Boran",
+      "affiliation": "International Artificial Intelligence Research Institute, Harbin Institute of Technology, Shenzhen"
+    }
+  ],
+  "access_right": "open",
+  "license": "MIT",
+  "keywords": [
+    "selective prediction",
+    "evidence sufficiency",
+    "visual compliance",
+    "benchmark",
+    "ACML 2026"
+  ],
+  "version": "v1.0-acml2026"
+}

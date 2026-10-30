@@ -7,7 +7,7 @@ The mismatch is visible directly -- pooled 0.627 versus a per-seed mean of 0.640
 
 The estimand we want is "the within-stratum AUROC of an R-CES head trained with a
 random seed, evaluated on a fresh sample of test images". So each replicate:
-  1. draws ONE image bootstrap sample (shared -- the test image set is common to
+  1. draws ONE original-image-family bootstrap sample (shared -- the test family set is common to
      every seed),
   2. draws seeds with replacement,
   3. computes the within-stratum AUROC *separately per drawn seed* on those images,
@@ -15,7 +15,7 @@ random seed, evaluated on a fresh sample of test images". So each replicate:
 
 Reads the cached frames written by hierarchical_ci.py, so no retraining is needed.
 
-  UV_CACHE_DIR=/tmp/uv-cache uv run python experiments/ablation/recompute_ci.py
+  UV_CACHE_DIR=/tmp/uv-cache uv run python R-CES/experiments/ablation/recompute_ci.py
 """
 
 from __future__ import annotations

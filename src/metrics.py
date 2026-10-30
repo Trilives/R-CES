@@ -1,4 +1,4 @@
-"""Selective-prediction metrics for R-CES (Readme step 8).
+"""Selective-prediction metrics for R-CES.
 
 A selective predictor answers when a confidence score >= tau and abstains
 otherwise. Conventions used throughout:
@@ -61,8 +61,8 @@ def bootstrap_auroc(
     """Percentile bootstrap interval for AUROC.
 
     When ``groups`` is provided, whole groups are sampled with replacement.
-    R-CES uses image IDs here so multiple checkpoints from the same image remain
-    correlated in the uncertainty estimate. Replicates containing only one
+    R-CES callers supply original-image family IDs, keeping originals, crops
+    and their checkpoints together. Replicates containing only one
     class are excluded and the valid count is reported explicitly.
     """
     s = np.asarray(scores, dtype=float)
@@ -153,11 +153,12 @@ def binary_classification_metrics(
 
     if positives:
         order = np.argsort(-s, kind="stable")
-        sorted_y = y[order]
-        cumulative_positive = np.cumsum(sorted_y == 1)
-        ranks = np.arange(1, len(y) + 1)
-        precision = cumulative_positive / ranks
-        auprc = float(precision[sorted_y == 1].sum() / positives)
+        sorted_s, sorted_y = s[order], y[order]
+        ends = np.flatnonzero(np.r_[sorted_s[:-1] != sorted_s[1:], True]) + 1
+        cumulative_positive = np.cumsum(sorted_y == 1)[ends - 1]
+        precision = cumulative_positive / ends
+        recall_steps = np.diff(np.r_[0, cumulative_positive]) / positives
+        auprc = float(np.sum(recall_steps * precision))
     else:
         auprc = float("nan")
 
@@ -171,31 +172,45 @@ def binary_classification_metrics(
 
 
 def risk_coverage_curve(scores: Sequence[float], correct: Sequence[int]) -> dict[str, np.ndarray]:
-    """Sweep tau from answer-all to answer-none, most-confident first.
+    """Realizable ``score >= tau`` decisions, ordered by increasing coverage.
 
-    Returns coverage (fraction answered) and risk (error rate among answered) at
-    each prefix of the score-sorted items.
+    Each point accepts an entire equal-score group. Splitting a tie would report
+    a coverage/risk pair that no score threshold can implement. The zero-coverage
+    abstain-all decision is implicit; its conditional risk is undefined.
     """
     s = np.asarray(scores, dtype=float)
     c = np.asarray(correct, dtype=float)
-    order = np.argsort(-s)  # most confident first
-    c_sorted = c[order]
-    n = len(c_sorted)
-    answered = np.arange(1, n + 1)
-    cum_correct = np.cumsum(c_sorted)
-    coverage = answered / n
-    risk = (answered - cum_correct) / answered  # error rate among answered
-    return {"coverage": coverage, "risk": risk, "thresholds": s[order]}
+    if s.ndim != 1 or c.ndim != 1 or len(s) != len(c):
+        raise ValueError("scores and correct must be equal-length one-dimensional sequences")
+    if not np.isfinite(s).all() or not np.isin(c, (0, 1)).all():
+        raise ValueError("scores must be finite and correct must contain only 0 and 1")
+    if not len(s):
+        return {key: np.array([], dtype=float) for key in ("coverage", "risk", "thresholds")}
+    order = np.argsort(-s, kind="stable")
+    sorted_s, sorted_c = s[order], c[order]
+    answered = np.flatnonzero(np.r_[sorted_s[:-1] != sorted_s[1:], True]) + 1
+    errors = np.cumsum(1 - sorted_c)[answered - 1]
+    return {"coverage": answered / len(s), "risk": errors / answered,
+            "thresholds": sorted_s[answered - 1]}
 
 
 def aurc(scores: Sequence[float], correct: Sequence[int]) -> float:
-    """Area under the risk-coverage curve (lower is better)."""
+    """Right-endpoint step integral over complete tie groups (lower is better).
+
+    AURC = sum_g (coverage_g - coverage_{g-1}) * risk_g, coverage_0 = 0.
+    With distinct scores this is the usual mean of prefix risks. Constant
+    scores give the full-population risk, independently of input row order.
+    """
     curve = risk_coverage_curve(scores, correct)
-    return float(np.trapezoid(curve["risk"], curve["coverage"]))
+    if not len(curve["coverage"]):
+        return float("nan")
+    return float(np.sum(np.diff(np.r_[0.0, curve["coverage"]]) * curve["risk"]))
 
 
 def coverage_at_risk(scores: Sequence[float], correct: Sequence[int], target_risk: float) -> float:
-    """Largest coverage whose running risk stays <= target_risk."""
+    """Largest realizable coverage with conditional risk <= target_risk."""
+    if not 0 <= target_risk <= 1:
+        raise ValueError("target_risk must lie in [0, 1]")
     curve = risk_coverage_curve(scores, correct)
     ok = curve["risk"] <= target_risk
     if not ok.any():
@@ -247,12 +262,19 @@ def critical_missing_checkpoint_recall(
 
 
 def tune_tau_for_risk(scores: Sequence[float], correct: Sequence[int], target_risk: float) -> float:
-    """Pick the lowest tau (max coverage) whose running risk <= target_risk, on
-    the given (val) set. Returns the score threshold to apply elsewhere."""
+    """Pick the most permissive admissible threshold on validation tie groups.
+
+    If no group is admissible, return a threshold strictly above the maximum
+    score (infinity for an empty validation set), accepting no samples.
+    """
+    if not 0 <= target_risk <= 1:
+        raise ValueError("target_risk must lie in [0, 1]")
     curve = risk_coverage_curve(scores, correct)
     ok = curve["risk"] <= target_risk
     if not ok.any():
-        return float(np.max(curve["thresholds"]) + 1e-6)  # answer nobody
+        # Keep the strong float64 scalar: NumPy otherwise rounds a Python float
+        # back to float32 when compared with float32 scores, undoing nextafter.
+        return np.nextafter(np.max(curve["thresholds"]), np.inf) if len(curve["thresholds"]) else float("inf")
     # thresholds are sorted descending alongside coverage ascending; the last OK
     # index is the most permissive admissible threshold.
     idx = np.where(ok)[0].max()

@@ -12,7 +12,7 @@ models are then trained from scratch with the same split, seed, optimizer, and
 The blackout check encodes actual all-black RGB images with the frozen SigLIP 2
 vision encoder; it does not approximate blackout by zeroing cached features.
 
-  UV_CACHE_DIR=/tmp/uv-cache uv run python experiments/rces/diagnose.py
+  UV_CACHE_DIR=/tmp/uv-cache uv run python R-CES/experiments/rces/diagnose.py
 """
 
 from __future__ import annotations
@@ -285,7 +285,7 @@ def held_out_report(
         report["checkpoint"]["bootstrap_by_image"] = metrics.bootstrap_auroc(
             checkpoint_scores,
             checkpoint_targets,
-            groups=checkpoint_images,
+            groups=exp_io.original_image_families(checkpoint_images),
             n_bootstrap=BOOTSTRAP_SAMPLES,
             seed=config.SEED,
         )
@@ -298,7 +298,7 @@ def held_out_report(
         report["visual_pair"]["bootstrap_by_image"] = metrics.bootstrap_auroc(
             pair_scores,
             pair_targets,
-            groups=pair_images,
+            groups=exp_io.original_image_families(pair_images),
             n_bootstrap=BOOTSTRAP_SAMPLES,
             seed=config.SEED,
         )

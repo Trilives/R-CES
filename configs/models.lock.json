@@ -1,0 +1,372 @@
+{
+  "schema_version": 1,
+  "image_policy": "EXIF transpose; preserve aspect ratio; longest edge <=1920; area <=1920x1080 for compliance VLMs",
+  "models": [
+    {
+      "name": "siglip2-base-patch16-224",
+      "repository_id": "google/siglip2-base-patch16-224",
+      "revision": "75de2d55ec2d0b4efc50b3e9ad70dba96a7b2fa2",
+      "role": "vision_and_checkpoint_text_encoder",
+      "revision_provenance": "download_metadata",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 253,
+          "git_sha1": "c8cd2a20e58a738f44f267ae19f9568ff1095698"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 1500800904,
+          "sha256": "612923381c76ec5a9bed335d1c48827e3f2e506ac31b044b63b2031fadee6a0b"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 394,
+          "git_sha1": "2e52d8e8492b5c496ae04c37bfa09760469fb18b"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 636,
+          "git_sha1": "8d6368f7e735fbe4781bf6e956b7c6ad0586df80"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 34363039,
+          "sha256": "cb9140fae3ac5122c972d37adf83e1248471a38147ad76f8215c8872c6fd8322"
+        },
+        {
+          "path": "tokenizer.model",
+          "bytes": 4241003,
+          "sha256": "61a7b147390c64585d6c3543dd6fc636906c9af3865a5548f27f31aee1d4c8e2"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 47164,
+          "git_sha1": "d97c5412159422c3b56fbc99076b1dcc25dd7856"
+        }
+      ]
+    },
+    {
+      "name": "dinov2-large",
+      "repository_id": "facebook/dinov2-large",
+      "revision": "47b73eefe95e8d44ec3623f8890bd894b6ea2d6c",
+      "role": "vision_encoder",
+      "revision_provenance": "download_metadata",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 549,
+          "git_sha1": "5def28dd2a0ecb2561a4649703f13c4dc595ee95"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 1217522888,
+          "sha256": "399fba97a95f22c36834418bc69373364a99af3a1153da1c0fb31db567c92e23"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 436,
+          "git_sha1": "ff5b47c2edcd1d3556d63c01a65d93b58b9efce1"
+        }
+      ]
+    },
+    {
+      "name": "Qwen3.5-4B",
+      "repository_id": "Qwen/Qwen3.5-4B",
+      "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+      "role": "compliance_answerer",
+      "revision_provenance": "verified_against_local_experiment_files",
+      "files": [
+        {
+          "path": "chat_template.jinja",
+          "bytes": 7756,
+          "git_sha1": "a585dec894e63da457d9440ec6aa7caa16d20860"
+        },
+        {
+          "path": "config.json",
+          "bytes": 3161,
+          "git_sha1": "557d961b205319c6a7da5f757f565b69b3967b7d"
+        },
+        {
+          "path": "model.safetensors-00001-of-00002.safetensors",
+          "bytes": 5329398688,
+          "sha256": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61"
+        },
+        {
+          "path": "model.safetensors-00002-of-00002.safetensors",
+          "bytes": 3990429408,
+          "sha256": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 390,
+          "git_sha1": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 12807982,
+          "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 16710,
+          "git_sha1": "eda48d3e75a8e59a8479ee4ec8b37f76e711d9c1"
+        }
+      ]
+    },
+    {
+      "name": "Qwen3.5-9B",
+      "repository_id": "Qwen/Qwen3.5-9B",
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "role": "compliance_answerer",
+      "revision_provenance": "verified_against_local_experiment_files",
+      "files": [
+        {
+          "path": "chat_template.jinja",
+          "bytes": 7756,
+          "git_sha1": "a585dec894e63da457d9440ec6aa7caa16d20860"
+        },
+        {
+          "path": "config.json",
+          "bytes": 3126,
+          "git_sha1": "273ce437e01baf96a07cd9eb3d5f48bac8d7c657"
+        },
+        {
+          "path": "model.safetensors-00001-of-00004.safetensors",
+          "bytes": 5276436216,
+          "sha256": "db6f444b43d318c92f360a13a25561a6a65b10c0631b8ed305a426dbaa6c380e"
+        },
+        {
+          "path": "model.safetensors-00002-of-00004.safetensors",
+          "bytes": 5335161512,
+          "sha256": "31c7d7e2dd5d207840b31cc59083c8f4c4718959149e0358c0364052bb9a0330"
+        },
+        {
+          "path": "model.safetensors-00003-of-00004.safetensors",
+          "bytes": 5368717440,
+          "sha256": "7ec36ba3a4176a44c3c0876ad80c56a2f70c84bf008d82e9501df642f17dadec"
+        },
+        {
+          "path": "model.safetensors-00004-of-00004.safetensors",
+          "bytes": 3325995712,
+          "sha256": "b62b0c4cd7e44edee103ee8f4fe225f246d5e768e07bfd5f25b63a8aa1fdd0c6"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 390,
+          "git_sha1": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 12807982,
+          "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 16710,
+          "git_sha1": "eda48d3e75a8e59a8479ee4ec8b37f76e711d9c1"
+        }
+      ]
+    },
+    {
+      "name": "Qwen3.6-35B-A3B-FP8",
+      "repository_id": "Qwen/Qwen3.6-35B-A3B-FP8",
+      "revision": "95a723d08a9490559dae23d0cff1d9466213d989",
+      "role": "compliance_answerer",
+      "revision_provenance": "pinned_public_snapshot_for_new_runs",
+      "files": [],
+      "original_remote_revision_recorded": false
+    },
+    {
+      "name": "Qwen3-VL-8B-Instruct",
+      "repository_id": "Qwen/Qwen3-VL-8B-Instruct",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "role": "compliance_answerer",
+      "revision_provenance": "verified_against_local_experiment_files",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 1474,
+          "git_sha1": "0e2df614c5fe1ad2b6b540c8625bebf2d7ec43ca"
+        },
+        {
+          "path": "model-00001-of-00004.safetensors",
+          "bytes": 4902275944,
+          "sha256": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa"
+        },
+        {
+          "path": "model-00002-of-00004.safetensors",
+          "bytes": 4915962496,
+          "sha256": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5"
+        },
+        {
+          "path": "model-00003-of-00004.safetensors",
+          "bytes": 4999831048,
+          "sha256": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192"
+        },
+        {
+          "path": "model-00004-of-00004.safetensors",
+          "bytes": 2716270024,
+          "sha256": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 390,
+          "git_sha1": "2ea84a437d448ff71b08df68fdd949d5cc4ebb64"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 7032403,
+          "git_sha1": "c6cc1014128b19d1fc46b1d30a23e3b1d35db421"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 10868,
+          "git_sha1": "d3d3763207692c78780f4bf42d4dadf49a5c8012"
+        }
+      ]
+    },
+    {
+      "name": "InternVL3_5-8B-HF",
+      "repository_id": "OpenGVLab/InternVL3_5-8B-HF",
+      "revision": "741a7d03020411e666c6109218ab71e08151ef86",
+      "role": "compliance_answerer",
+      "revision_provenance": "download_metadata",
+      "files": [
+        {
+          "path": "chat_template.jinja",
+          "bytes": 481,
+          "git_sha1": "0b19f45e0cd40b10374f24065639b0c2eee18a22"
+        },
+        {
+          "path": "config.json",
+          "bytes": 2998,
+          "git_sha1": "e649dc4968d1a55b93277a3ee38951308c43b7c8"
+        },
+        {
+          "path": "model-00001-of-00004.safetensors",
+          "bytes": 4906355392,
+          "sha256": "541b630d4a991a0f9502b87b7e7fa3a4a3b03bc0fec4a9057eeb0af35873beae"
+        },
+        {
+          "path": "model-00002-of-00004.safetensors",
+          "bytes": 4915962480,
+          "sha256": "1dd4d7629deff34807654ca198f45166a532fdbc1bbda3fd80e5e69eebdcdcd4"
+        },
+        {
+          "path": "model-00003-of-00004.safetensors",
+          "bytes": 4915962496,
+          "sha256": "595f3b9043d046ae612f2dbf7cbfcd2465a1c001fcb58e93f78dcaf7cc5976e1"
+        },
+        {
+          "path": "model-00004-of-00004.safetensors",
+          "bytes": 2318463688,
+          "sha256": "1935bfbc7774be5e64adf7ecec5cbefc7c18dae24d498ba4609301c3423b21fd"
+        },
+        {
+          "path": "preprocessor_config.json",
+          "bytes": 666,
+          "git_sha1": "a7b376e0a83f26eaa784db792ef61be7aac5494f"
+        },
+        {
+          "path": "processor_config.json",
+          "bytes": 72,
+          "git_sha1": "e543bcb3b7550029f450d28cf138706d7f9a5ef5"
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 877,
+          "git_sha1": "253d50d9027f558bd5478163a49ccd263fc27959"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 11424484,
+          "sha256": "7b9d18660f656ae5a87df2d5d6ed990e80f292d3473c1a35cae8259a5d28cd67"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 7614,
+          "git_sha1": "16f34ecc26e1a1c213ab719189e1407e3e200196"
+        }
+      ]
+    },
+    {
+      "name": "gemma-4-E2B-it",
+      "repository_id": "google/gemma-4-E2B-it",
+      "revision": "9dbdf8a839e4e9e0eb56ed80cc8886661d3817cf",
+      "role": "compliance_answerer",
+      "revision_provenance": "verified_against_local_experiment_files",
+      "files": [
+        {
+          "path": "chat_template.jinja",
+          "bytes": 17336,
+          "git_sha1": "c19999a347da729cf62806a8ddb7eb8e315223b5"
+        },
+        {
+          "path": "config.json",
+          "bytes": 4954,
+          "git_sha1": "923b5e9405e7d319572b0c1b1a89291512262aa3"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 10246621918,
+          "sha256": "2db5482b20d746879bb3ef79b5203e9075a2e2b98f54ec7c2f281c1477ddc550"
+        },
+        {
+          "path": "processor_config.json",
+          "bytes": 1689,
+          "git_sha1": "5465974d23e1eca2c46c2809b26c997946ce0d90"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 32169626,
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 2095,
+          "git_sha1": "375b25dc8be85705251e41be1c25310d24932051"
+        }
+      ]
+    },
+    {
+      "name": "gemma-4-E4B-it",
+      "repository_id": "google/gemma-4-E4B-it",
+      "revision": "a4c2d58be94dda072b918d9db64ee85c8ed34e3f",
+      "role": "compliance_answerer",
+      "revision_provenance": "verified_against_local_experiment_files",
+      "files": [
+        {
+          "path": "chat_template.jinja",
+          "bytes": 17336,
+          "git_sha1": "c19999a347da729cf62806a8ddb7eb8e315223b5"
+        },
+        {
+          "path": "config.json",
+          "bytes": 5145,
+          "git_sha1": "d68960fdcce766f2bfe41436325a8a483a74d125"
+        },
+        {
+          "path": "model.safetensors",
+          "bytes": 15992595884,
+          "sha256": "cfbd3d2f1cd71bd471c37fe2bf8546d5028d41e5736f64e1ca6c6b8893125503"
+        },
+        {
+          "path": "processor_config.json",
+          "bytes": 1689,
+          "git_sha1": "5465974d23e1eca2c46c2809b26c997946ce0d90"
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 32169626,
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 2095,
+          "git_sha1": "375b25dc8be85705251e41be1c25310d24932051"
+        }
+      ]
+    }
+  ]
+}

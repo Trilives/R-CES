@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/Trilives/argus",
+  "version": "2.4.0",
+  "commit": "bc47272afea00b52456f36e6ffc96deda8c76aaa",
+  "snapshot_url": "https://github.com/Trilives/argus/tree/bc47272afea00b52456f36e6ffc96deda8c76aaa",
+  "raw_base_url": "https://raw.githubusercontent.com/Trilives/argus/bc47272afea00b52456f36e6ffc96deda8c76aaa",
+  "upstream_manifest": "data/image_pool/manifest.csv",
+  "upstream_manifest_sha256": "08760f81cfd39b1fc30bb0fbb274a695f65aab3b8a6b8c9961cdf89562bb72d0",
+  "verified_public_utc": "2026-10-30",
+  "coordinate_system": "EXIF-transposed original parent pixels; right/bottom exclusive",
+  "original_experiment_pixels_included": false,
+  "image_terms": "Per-file license and license_url in images.csv; annotations are licensed separately."
+}

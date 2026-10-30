@@ -3,7 +3,7 @@
 The anonymized construction-safety image pool — **1578 images** — is partitioned
 into the splits the R-CES benchmark draws from. Each list file holds one
 anonymized `image_id` (e.g. `img_0002.jpg`) per line, matching a file under
-`data/images/`.
+`R-CES/data/images/`.
 
 ```text
 1578 images
@@ -32,16 +32,21 @@ anonymized `image_id` (e.g. `img_0002.jpg`) per line, matching a file under
 
 ## Test-expansion image selection
 
-The active 1,000-pair pilot uses 250 images. To browse the remaining image pool
+The paper uses an image-disjoint 60/20/20 split rebuilt from the annotated pilot
+image IDs by `experiments/data/splits.py` with `USE_DATASET_SPLITS=False` (default).
+Crops inherit their parent's experiment split. This experiment split does not use
+the historical full-pool validation and test lists below.
+
+The active pilot uses 250 images. To browse the remaining image pool
 one image at a time and select high-value cases for annotation, run:
 
 ```bash
-UV_CACHE_DIR=/tmp/uv-cache uv run python Script/select_test_images_web.py
+UV_CACHE_DIR=/tmp/uv-cache uv run python R-CES/Script/select_test_images_web.py
 ```
 
 Open the printed localhost URL. **Select and next** immediately adds the current
 image name to `test_expansion_selected_images.txt`; **deselect** removes it.
-The browser cursor is stored under `cache/`, so stopping and restarting the
+The browser cursor is stored under `R-CES/cache/`, so stopping and restarting the
 script resumes from the last image.
 
 These are field-inspection photos, so the inspector's primary photographed
@@ -54,7 +59,8 @@ touching the frame boundary, so its rule-relevant state cannot be judged. If the
 image contains only a judgeable primary subject and no such secondary edge case,
 do not select it. This file is an annotation candidate pool only. After labels
 are available, stratify by whether an image contains a missing checkpoint, then
-rebuild and lock the final train/validation/test split.
+rebuild and lock the final train/validation/test split before
+reporting.
 
 ## Counts
 
@@ -73,12 +79,12 @@ rebuild and lock the final train/validation/test split.
   once (disjoint).
 - **Development subset** is sampled *from* train, so it overlaps train by design.
   The pilot benchmark — the **1000 image-rule pairs** in
-  `data/pairs/rces_pilot_pairs.jsonl` — is built from **250 images** sampled
+  `R-CES/data/pairs/rces_pilot_pairs.jsonl` — is built from **250 images** sampled
   from this subset (× 4 rule roles over the 23-rule benchmark subset).
 - **Balanced test** is sampled independently for class-bias analysis and may
   overlap the primary splits.
 
-> These split lists are committed dataset-definition metadata. No code in this
-> repository reads them at annotation/inference time (each pair already carries
-> its `image_split`); they document how the benchmark is partitioned and back
-> the planned expansion of annotation onto the val / realistic-test splits.
+> These lists document the original pool partition and support annotation
+> expansion. Setting `USE_DATASET_SPLITS=True` opts into these lists rather than
+> the default paper split. It requires the relevant images and locked annotations;
+> this mode is not the camera-ready experiment configuration.

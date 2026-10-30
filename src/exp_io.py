@@ -15,15 +15,45 @@ from __future__ import annotations
 
 import sys
 from collections import defaultdict
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
-# This module lives in src; make src importable so `config` and the
+# This module lives in R-CES/src; make src importable so `config` and the
 # annotation line's `rces_io` resolve even if a caller didn't set the path.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import config  # noqa: E402
 import rces_io as rio  # noqa: E402  (paths, vocab, rule IO)
+
+
+@lru_cache(maxsize=1)
+def crop_parent_map() -> dict[str, str]:
+    """Fixed crop ancestry, independent of whether crop augmentation is enabled."""
+    parents: dict[str, str] = {}
+    if rio.CROP_AUG_PATH.exists():
+        for row in rio.load_jsonl(rio.CROP_AUG_PATH):
+            crop, parent = row["image_id"], row["base_image_id"]
+            if crop in parents and parents[crop] != parent:
+                raise ValueError(f"Conflicting crop parent for {crop}")
+            parents[crop] = parent
+    return parents
+
+
+def original_image_family(image_id):
+    """Bootstrap cluster: an original and every crop derived from that original."""
+    parents = crop_parent_map()
+    seen = set()
+    while image_id in parents:
+        if image_id in seen:
+            raise ValueError("Cycle in crop ancestry")
+        seen.add(image_id)
+        image_id = parents[image_id]
+    return image_id
+
+
+def original_image_families(image_ids):
+    return [original_image_family(image_id) for image_id in image_ids]
 
 
 # --- Gold loading -------------------------------------------------------------
@@ -101,7 +131,7 @@ def critical_checkpoints(rule: dict[str, Any]) -> list[str]:
 
 
 def resolvable_targets(pair: dict[str, Any], rule: dict[str, Any]) -> dict[str, int]:
-    """Per-critical-checkpoint resolvable gold (Readme step 7 dense supervision).
+    """Per-critical-checkpoint resolvable gold (dense supervision).
 
     resolvable(k, x, r) = 0 iff k is in the human-annotated missing_checkpoints,
     else 1 (observed or not-applicable -> 1; na->1 confirmed by the maintainer).

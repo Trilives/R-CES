@@ -1,7 +1,7 @@
 """Train R-CES across seeds, cache per-seed score frames, and interval the controls.
 
 The interval comes from `stratified.mean_of_seed_aurocs`, which resamples training
-seeds and one shared test-image sample and averages per-seed AUROCs; see that
+seeds and one shared original-image-family sample and averages per-seed AUROCs; see that
 function for why the per-seed step matters. Per-seed frames are cached to
 `hierarchical_frames*.json` so the interval can be recomputed (see
 `recompute_ci.py`) without retraining.
@@ -11,7 +11,7 @@ real image->pair assignment and on the shuffled one.
 
   RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
   RCES_N_SEEDS=10 CUBLAS_WORKSPACE_CONFIG=:4096:8 UV_CACHE_DIR=/tmp/uv-cache \
-  uv run python experiments/ablation/hierarchical_ci.py
+  uv run python R-CES/experiments/ablation/hierarchical_ci.py
 """
 
 from __future__ import annotations
@@ -101,7 +101,7 @@ def main() -> None:
     out = config.ARTIFACT_DIR / f"within_stratum_ci{TAG}.json"
     out.write_text(json.dumps(summary, ensure_ascii=False, indent=2, default=float) + "\n",
                    encoding="utf-8")
-    print(f"\n===== hierarchical (seed x image) bootstrap, {N_SEEDS} seeds =====")
+    print(f"\n===== hierarchical (seed x original-image-family) bootstrap, {N_SEEDS} seeds =====")
     for key, entry in summary["hierarchical"].items():
         marker = "contains 0.5" if entry["ci_contains_0_5"] else "EXCLUDES 0.5"
         print(f"  {key:38s} {entry['point_mean_of_seeds']:.4f} "

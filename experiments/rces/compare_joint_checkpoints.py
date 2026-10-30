@@ -25,6 +25,7 @@ import torch  # noqa: E402
 from torch.utils.data import DataLoader  # noqa: E402
 
 import config  # noqa: E402
+import exp_io  # noqa: E402
 import metrics  # noqa: E402
 from data import dataset as ds  # noqa: E402
 from data import splits  # noqa: E402
@@ -228,8 +229,9 @@ def paired_cluster_delta(
     first = np.asarray(control, dtype=float)
     second = np.asarray(candidate, dtype=float)
     target = np.asarray(targets, dtype=int)
-    group = np.asarray(images, dtype=object)
-    unique_groups = list(dict.fromkeys(images))
+    families = exp_io.original_image_families(images)
+    group = np.asarray(families, dtype=object)
+    unique_groups = list(dict.fromkeys(families))
     indices_by_group = {
         image_id: np.flatnonzero(group == image_id) for image_id in unique_groups
     }
@@ -267,14 +269,14 @@ def arm_report(
         "checkpoint": metrics.bootstrap_auroc(
             checkpoint_scores,
             checkpoint_targets,
-            groups=checkpoint_images,
+            groups=exp_io.original_image_families(checkpoint_images),
             n_bootstrap=BOOTSTRAP_SAMPLES,
             seed=config.SEED,
         ),
         "visual_pair": metrics.bootstrap_auroc(
             pair_score_values,
             pair_targets,
-            groups=pair_images,
+            groups=exp_io.original_image_families(pair_images),
             n_bootstrap=BOOTSTRAP_SAMPLES,
             seed=config.SEED,
         ),

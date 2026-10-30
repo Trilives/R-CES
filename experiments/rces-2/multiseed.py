@@ -13,7 +13,7 @@ evaluated; the script reports, per arm:
   RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
   RCES_N_SEEDS=5 RCES_LOCAL_QWEN_MODEL=Qwen3.5-9B \
   CUBLAS_WORKSPACE_CONFIG=:4096:8 UV_CACHE_DIR=/tmp/uv-cache \
-  uv run python experiments/rces-2/multiseed.py
+  uv run python R-CES/experiments/rces-2/multiseed.py
 """
 
 from __future__ import annotations
@@ -36,6 +36,7 @@ sys.path.insert(0, str(HERE))
 import numpy as np  # noqa: E402
 
 import config  # noqa: E402
+import exp_io  # noqa: E402
 import metrics  # noqa: E402
 from data import dataset as ds  # noqa: E402
 from data import splits  # noqa: E402
@@ -71,7 +72,7 @@ def checkpoint_bootstrap_ci(
                 targets.append(target)
                 groups.append(record.image_id)
     return metrics.bootstrap_auroc(
-        np.asarray(scores), np.asarray(targets), groups=groups, n_bootstrap=5000
+        np.asarray(scores), np.asarray(targets), groups=exp_io.original_image_families(groups), n_bootstrap=5000
     )
 
 

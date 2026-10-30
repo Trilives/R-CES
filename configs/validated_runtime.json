@@ -1,0 +1,71 @@
+{
+  "python": "3.13.13",
+  "packages": {
+    "torch": "2.11.0",
+    "torchvision": "0.26.0",
+    "transformers": "5.8.1",
+    "numpy": "2.4.4",
+    "Pillow": "12.2.0",
+    "accelerate": "1.13.0",
+    "huggingface-hub": "1.14.0",
+    "openai": "2.37.0",
+    "python-dotenv": "1.2.2"
+  },
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 4090",
+    "reported_memory_bytes": 50857050112
+  },
+  "cuda_runtime": "13.0",
+  "cpu_threads": 2,
+  "deterministic": true,
+  "cublas_workspace_config": ":4096:8",
+  "dtype": "float32",
+  "input_pixels": "original_experimental_images",
+  "frozen_feature_shapes": {
+    "siglip2_512": [
+      1024,
+      768
+    ],
+    "siglip2_224": [
+      196,
+      768
+    ],
+    "dinov2": [
+      1369,
+      1024
+    ]
+  },
+  "head_training": {
+    "epochs": 40,
+    "batch_size_v1": 64,
+    "batch_size_v2": 32,
+    "hidden_dim": 256,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "dropout": 0.1
+  },
+  "validation_note": "This is the validated head-score archival runtime; regenerated per-seed AUROCs are checked against stored original estimates. VLM inference is verified from the frozen archived predictions.",
+  "validated_on": "2026-10-31",
+  "vlm_dtype": "auto (model config)",
+  "vlm_decode": {
+    "structured_max_new_tokens": 768,
+    "structured_max_attempts": 2,
+    "prediction_schema_version": 3,
+    "input_policy": "max_1080p_v1",
+    "class_order": [
+      "compliant",
+      "non_compliant",
+      "not_applicable"
+    ]
+  },
+  "measured_head_run": {
+    "encoder": "siglip2_512",
+    "seed": 0,
+    "epochs": 40,
+    "elapsed_seconds": 119.7232602990116,
+    "includes": "head training, validation/test scoring, calibration and score persistence",
+    "excludes": "feature extraction and VLM inference",
+    "conditions": "two CPU threads; other archival head jobs running concurrently",
+    "original_auroc_matched": true
+  }
+}

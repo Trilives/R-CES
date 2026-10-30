@@ -28,8 +28,8 @@ Qwen3.7-Plus output exists only to compare a frontier vision model with human
 annotation and study disagreement / overconfidence. It is not used for R-CES
 training, threshold tuning, evaluation labels, or ablation inputs.
 
-The locally stored `models/Qwen3.5-4B` is the fixed downstream compliance
-VLM for Task 2 and the source of MaxProb probabilities. It never supplies R-CES
+`RCES_LOCAL_QWEN_MODEL` selects the downstream compliance VLM; the paper sweeps
+seven answerers, with Qwen3.5-9B used for the calibration table. It never supplies R-CES
 training labels: human annotation remains the only supervision and gold.
 
 ## Layout
@@ -159,11 +159,8 @@ aggregation. The recorded comparison used the then-current 224px cache, seed 0,
 and best validation checkpoint AUROC selection. The candidate has 558,273
 parameters versus 526,337 for the control.
 
-On the June 10 snapshot, checkpoint AUROC increased from `0.6163` to `0.6739`
-and visual-pair AUROC from `0.5672` to `0.6470`. Paired image-cluster bootstrap
-intervals still include zero (`[-0.0960, 0.1998]` and `[-0.0769, 0.2467]`). The
-result is suggestive but does not justify replacing the default head; test has
-only 18 negative checkpoint examples and 11 negative visual pairs.
+This historical diagnostic is separate from the paper tables. Use the released
+score archive for the final multi-seed comparisons.
 
 ```bash
 UV_CACHE_DIR=/tmp/uv-cache \
@@ -312,9 +309,26 @@ test  <- realistic_test_images.txt
 
 Use the official mode only after those splits have enough locked human labels.
 
+## Verify the paper tables
+
+```bash
+uv run --locked python experiments/verify_paper_results.py
+# Figure 3 from the same archived scores, without images or model weights:
+uv run --locked --with matplotlib python experiments/figures/make_figures.py
+```
+
+The archive and table-field mapping are in
+[results/acml2026/README.md](../results/acml2026/README.md). The verifier checks
+all six tables, including the family-bootstrap intervals and complete-tie
+threshold decisions. The scripts below generate fresh experimental inputs;
+public pixels can differ from the original inputs.
+
 ## Paper analyses (10 seeds)
 
-Every multi-seed number in the paper comes from one of these scripts, run with
+Photograph access and local fixed-crop generation are documented only in
+[DATA_AVAILABILITY.md](../DATA_AVAILABILITY.md). Released pixels differ from the
+original experimental inputs. Every multi-seed number in the paper comes from
+one of these scripts, run with
 
 ```bash
 RCES_VISION_ENCODER=siglip2_512 RCES_INCLUDE_CROP_AUG=1 RCES_DETERMINISTIC=1 \
@@ -334,15 +348,33 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python <script>
 | §6.1 permutation test | `ablation/permutation_test.py` | `permutation_test_cropaug.json` |
 | §6.1 rule-disjoint CV | `ablation/rule_disjoint.py` | `rule_disjoint_cropaug.json` |
 | §6.1 causes; Tab 3; Fig 3 | `ablation/camera_ready.py`; figure: `figures/make_figures.py` | `camera_ready_siglip2_512_cropaug.json` |
-| §6.2 gate on / off / visual subset; §6.5 error decomposition | `rces/evaluate.py` | `rces_eval_report_e0_corrected_siglip2_512_cropaug.json` |
+| §6.2 gate on / visual subset; descriptive per-seed operating risk | `ablation/camera_ready.py` | `camera_ready_siglip2_512_cropaug.json` |
+| §6.5 error decomposition | `rces/evaluate.py` with `RCES_LOCAL_QWEN_MODEL=Qwen3.5-9B` | `rces_eval_report_e0_corrected_siglip2_512_cropaug.json` |
 | §6.3 ablation prose | `ablation/multiseed.py` | `multiseed_ablation_summary_cropaug.json` |
 | Tab 4 (aggregation) | `ablation/aggregation_pairlevel.py` | `aggregation_pairlevel_cropaug.json` |
 | Tab 5 (backbone) | `ablation/camera_ready.py` per encoder | `camera_ready_{siglip2_512,siglip2_224,dinov2}_cropaug.json` |
 | Tab 6: answer-side gates | `baselines/cascade.py` per VLM | `cascade_task2_<VLM>.json` |
 | Tab 6: R-CES column | `ablation/task2_multiseed.py` | `task2_multiseed_cropaug.json` |
 
+Table scripts in this table are relative to `experiments/`, except `tmp/compute_iaa.py`,
+which is relative to the repository root. For Fig 3, install the plotting dependency
+for that command: `uv run --with matplotlib python experiments/figures/make_figures.py`.
+Figs 1 and 2 are an explanatory drawing and annotated photograph in the separate
+`rces_acml2026_source.zip` manuscript source archive. Render them with the official
+main document (TeX Live and latexmk required):
+
+```bash
+unzip rces_acml2026_source.zip
+cd rces_acml2026_source
+latexmk -pdf rces_acml2026.tex
+```
+
+These two figures are illustrative, without single-seed numerical results. Operating-point risks are descriptive per-seed
+results; no pooled Wilson interval or deployment-risk guarantee is reported.
+
 The within-stratum estimator lives only in `src/stratified.py`. It computes AUROC per seed and
-then averages, and bootstraps with one shared test-image resample per replicate.
+then averages. Each bootstrap replicate resamples seeds and one shared set of
+original-image families, retaining the original and its crops in the same cluster.
 
 ## Ablations
 
@@ -377,7 +409,8 @@ current scripts.
 
 ## Artifacts
 
-All outputs are regenerable and gitignored:
+Fresh run outputs are gitignored. Frozen paper inputs and reports are committed
+under `results/acml2026/`; see its README for schemas and checksums. Fresh outputs include:
 
 - `experiments/artifacts/rces_image_split.json`
 - `experiments/artifacts/local_qwen*/compliance_predictions_{structured_v2,direct}.jsonl`

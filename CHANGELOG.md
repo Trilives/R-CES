@@ -1,12 +1,15 @@
 # Changes
 
-## Unreleased — final camera-ready polish
+## v1.0.2-acml2026 — final camera-ready polish — 2026-10-31
 
 - Match the submitted Figure 3 layout: one shared legend, readable text, distinct
   line styles and complete endpoint markers. Reliability bins, scores and result
   values are unchanged.
 - Describe the aggregate as a sufficiency ranking score and link the manuscript
   packages, checksums and change history from the README.
+- Attach the author's final submitted PDF, LaTeX source, supplement and checksums,
+  preserving the exact submission bytes. Bibliographic links and local editorial
+  refinements are included; experimental scores and paper table values are unchanged.
 
 ## Evidence-review completion — 2026-10-31
 

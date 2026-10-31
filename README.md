@@ -1,6 +1,6 @@
 # R-CES — checkpoint-level decidability benchmark and evidence-sufficiency scoring
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23827805.svg)](https://doi.org/10.5281/zenodo.23827805)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23827804.svg)](https://doi.org/10.5281/zenodo.23827804)
 
 Code and data for *When Is an Image Enough? A Checkpoint-Level Decidability
 Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance*
@@ -26,8 +26,8 @@ snapshots and hardware/software, see [ENVIRONMENT.md](ENVIRONMENT.md).
 The manuscript PDF, LaTeX source and supplementary ZIP are attached to
 [GitHub releases](https://github.com/Trilives/R-CES/releases), alongside
 `SHA256SUMS` for checking the three downloads. [CHANGELOG.md](CHANGELOG.md)
-records repository changes; the software archive DOI below identifies its fixed
-released version.
+records repository changes; the release tag below identifies the fixed
+repository snapshot.
 
 ## Benchmark at a glance
 
@@ -179,9 +179,9 @@ but live in two physical files so the baseline can never contaminate gold.
 
 ## Citation
 
-Software and results archive, version `v1.0.1-acml2026`:
-[10.5281/zenodo.23827805](https://doi.org/10.5281/zenodo.23827805).
-[All versions](https://doi.org/10.5281/zenodo.23827804).
+Software and results archive, version `v1.0.2-acml2026`:
+[GitHub release](https://github.com/Trilives/R-CES/releases/tag/v1.0.2-acml2026).
+[All archived versions](https://doi.org/10.5281/zenodo.23827804).
 
 ```bibtex
 @inproceedings{jiang2026rces,

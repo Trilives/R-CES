@@ -4,10 +4,10 @@
 
 Code and data for *When Is an Image Enough? A Checkpoint-Level Decidability
 Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance*
-(ACML 2026). **R-CES** (Rule-conditioned Checkpoint Evidence Sufficiency Scoring)
-asks whether an image contains enough evidence to decide a rule, *P(evidence
-sufficient to decide rule r from image x)*, rather than whether an answer is
-likely correct.
+(ACML 2026, Poster). **R-CES** (Rule-conditioned Checkpoint Evidence Sufficiency
+Scoring) scores whether an image contains enough evidence to decide a rule. It
+predicts critical-checkpoint resolvability and aggregates these predictions into
+a sufficiency score for ranking and abstention.
 
 The code, annotations and an image-free results archive are included. Verify all
 six paper tables from the archived per-seed scores and Task-2 predictions on a
@@ -22,6 +22,12 @@ uv run --locked python experiments/verify_paper_results.py
 configurations, hashes and table mapping. For photograph acquisition and crop
 generation, see [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md); for fixed model
 snapshots and hardware/software, see [ENVIRONMENT.md](ENVIRONMENT.md).
+
+The manuscript PDF, LaTeX source and supplementary ZIP are attached to
+[GitHub releases](https://github.com/Trilives/R-CES/releases), alongside
+`SHA256SUMS` for checking the three downloads. [CHANGELOG.md](CHANGELOG.md)
+records repository changes; the software archive DOI below identifies its fixed
+released version.
 
 ## Benchmark at a glance
 

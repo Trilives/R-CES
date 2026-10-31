@@ -1,5 +1,13 @@
 # Changes
 
+## Unreleased — final camera-ready polish
+
+- Match the submitted Figure 3 layout: one shared legend, readable text, distinct
+  line styles and complete endpoint markers. Reliability bins, scores and result
+  values are unchanged.
+- Describe the aggregate as a sufficiency ranking score and link the manuscript
+  packages, checksums and change history from the README.
+
 ## Evidence-review completion — 2026-10-31
 
 - Recorded the author's completed comparison of all 230 annotated crops, covering

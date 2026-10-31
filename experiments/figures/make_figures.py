@@ -23,6 +23,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 # experiments/figures/make_figures.py -> experiments/artifacts
 ART = Path(__file__).resolve().parents[1] / "artifacts"
@@ -69,28 +70,44 @@ def fig_calib() -> None:
                 report[block]["reliability_pooled"][method] = reliability_bins(scores, labels, 10)
     else:
         report = json.loads(CALIB_REPORT.read_text())["summary"]["calibration"]
-    fig, axes = plt.subplots(1, len(CALIB_PANELS), figsize=(9.0, 2.9), sharey=True)
+    # Size text for the full-width manuscript figure. A shared legend stays
+    # outside the data panels; ECE values are reported in the adjacent Table 3.
+    fig, axes = plt.subplots(1, len(CALIB_PANELS), figsize=(7.2, 2.0), sharey=True)
+    fig.subplots_adjust(left=0.085, right=0.99, bottom=0.25, top=0.75, wspace=0.15)
+    line_styles = ("-", "--", "-.")
     for ax, (block, title) in zip(axes, CALIB_PANELS):
-        ece = report[block]["ece"]
-        for key, name, color, marker in CALIB_METHODS:
+        for (key, name, color, marker), line_style in zip(CALIB_METHODS, line_styles):
             bins = report[block]["reliability_pooled"][key]
             conf = np.array(bins["confidence"], float)
             acc = np.array(bins["accuracy"], float)
             count = np.array(bins["count"], float)
             keep = count > 0
-            ax.plot(conf[keep], acc[keep], color=color, lw=1.2, alpha=0.8)
+            ax.plot(conf[keep], acc[keep], color=color, lw=1.2,
+                    ls=line_style, alpha=0.8, zorder=2)
             ax.scatter(conf[keep], acc[keep], s=8 + 120 * count[keep] / count.sum(),
-                       color=color, marker=marker, alpha=0.85,
-                       label=f"{name} (ECE {ece[key]['mean']:.3f})")
-        ax.plot([0, 1], [0, 1], color="black", ls=":", lw=1)
-        ax.set_xlim(0, 1)
-        ax.set_ylim(0, 1.02)
-        ax.set_title(title)
-        ax.set_xlabel("predicted score")
-        ax.grid(True, alpha=0.3)
-        ax.legend(loc="upper left", fontsize=7.5, framealpha=0.9)
-    axes[0].set_ylabel("empirical rate")
-    fig.tight_layout()
+                       color=color, marker=marker, alpha=0.85, zorder=3)
+        ax.plot([0, 1], [0, 1], color="black", ls=":", lw=1, zorder=1)
+        # Include complete markers at scores 0 and 1, without changing any bins.
+        ax.set_xlim(-0.055, 1.055)
+        ax.set_ylim(-0.055, 1.055)
+        ax.set_xticks(np.linspace(0, 1, 6))
+        ax.set_yticks(np.linspace(0, 1, 6))
+        ax.set_title(title, fontsize=10, pad=7)
+        ax.set_xlabel("predicted score", fontsize=10, labelpad=4)
+        ax.tick_params(labelsize=9, length=3, pad=3)
+        ax.set_axisbelow(True)
+        ax.grid(True, alpha=0.25, linewidth=0.6)
+    axes[0].set_ylabel("empirical rate", fontsize=10, labelpad=4)
+    handles = [
+        Line2D([], [], color=color, marker=marker, ls=line_style,
+               lw=1.2, markersize=5, label=name.capitalize())
+        for (_, name, color, marker), line_style in zip(CALIB_METHODS, line_styles)
+    ]
+    handles.append(Line2D([], [], color="black", ls=":", lw=1,
+                          label="Perfect calibration"))
+    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.53, 1.01),
+               ncol=4, frameon=False, fontsize=9.5, handlelength=2.3,
+               columnspacing=1.5)
     fig.savefig(OUT / "fig_calib.pdf", bbox_inches="tight")
     plt.close(fig)
     print("wrote fig_calib.pdf")

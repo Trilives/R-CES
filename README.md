@@ -1,6 +1,6 @@
 # R-CES — checkpoint-level decidability benchmark and evidence-sufficiency scoring
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23827804.svg)](https://doi.org/10.5281/zenodo.23827804)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23829886.svg)](https://doi.org/10.5281/zenodo.23829886)
 
 Code and data for *When Is an Image Enough? A Checkpoint-Level Decidability
 Benchmark and Rule-Conditioned Evidence-Sufficiency Analysis for Visual Compliance*
@@ -180,6 +180,7 @@ but live in two physical files so the baseline can never contaminate gold.
 ## Citation
 
 Software and results archive, version `v1.0.2-acml2026`:
+[10.5281/zenodo.23829886](https://doi.org/10.5281/zenodo.23829886).
 [GitHub release](https://github.com/Trilives/R-CES/releases/tag/v1.0.2-acml2026).
 [All archived versions](https://doi.org/10.5281/zenodo.23827804).
 

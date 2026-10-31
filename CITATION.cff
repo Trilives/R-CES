@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this benchmark or code, please cite the paper."
 title: "R-CES: checkpoint-level decidability benchmark and evidence-sufficiency scoring"
 type: software
-version: "v1.0-acml2026"
+version: "v1.0.1-acml2026"
 date-released: "2026-10-31"
 authors:
   - family-names: Jiang

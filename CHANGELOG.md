@@ -1,5 +1,12 @@
 # Changes
 
+## Evidence-review completion — 2026-10-31
+
+- Recorded the author's completed comparison of all 230 annotated crops, covering
+  334 annotation pairs: every crop retained its checkpoint evidence.
+- Added the review summary and input hashes, and updated the access documentation.
+  Labels, experimental scores and paper results are unchanged.
+
 ## ACML 2026 camera-ready release — 2026-10-31
 
 - Risk–coverage curves and validation thresholds use complete equal-score groups,

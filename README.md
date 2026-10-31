@@ -85,7 +85,7 @@ data/
   pairs/             gold, isolated model baseline, double-annotation, crop aug,
                      23-rule benchmark subset, unified schema, field docs
   rule/              English rule library (54 rules) + schema + field docs
-  upstream/          pinned ARGus image mapping, hashes, dimensions and licences
+  upstream/          pinned ARGus image mapping, hashes, licences and evidence review
   SHA256SUMS         checksums of every shipped data file
   splits/            image-disjoint split lists
   enhance/           held-out test-expansion pairs

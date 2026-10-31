@@ -1,6 +1,6 @@
 [project]
 name = "rces-supplement"
-version = "1.0.0"
+version = "1.0.1"
 description = "R-CES: checkpoint-level decidability benchmark and evidence-sufficiency scoring (ACML 2026)."
 readme = "README.md"
 requires-python = ">=3.13"

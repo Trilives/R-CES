@@ -1,0 +1,1406 @@
+{
+  "schema_version": 1,
+  "review_type": "released_crop_evidence_preservation",
+  "reviewer_role": "author",
+  "recorded_at": "2026-10-31T03:03:02.446417+00:00",
+  "upstream_repository": "https://github.com/Trilives/argus",
+  "upstream_commit": "bc47272afea00b52456f36e6ffc96deda8c76aaa",
+  "annotation_file": "data/pairs/rces_crop_augmentation.jsonl",
+  "annotation_sha256": "058bd0b0c93b02fb6bea890a25a57e23449fa37249b98c985e9b5a6cb5207b4c",
+  "image_mapping_file": "data/upstream/images.csv",
+  "image_mapping_sha256": "eb5e728d38dd05a516a5f04f48479b9c019755b1889b848d130cc2bb698e71e3",
+  "saved_review_sha256": "83397ebe0b82a3a861d10ad282733492e854634e2af72615880ea58fb0172b29",
+  "scope": "All existing annotated crops compared with their reconstructions from the fixed public upstream parents.",
+  "reviewed_crop_images": 230,
+  "covered_annotation_pairs": 334,
+  "image_decisions": {
+    "retained": 230,
+    "changed": 0,
+    "unsure": 0,
+    "unreviewed": 0
+  },
+  "author_confirmation": "Review complete; no loss of checkpoint evidence found.",
+  "pixel_identity_claimed": false,
+  "images": [
+    {
+      "image_id": "img_900001.jpg",
+      "parent_image_id": "img_1308.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900002.jpg",
+      "parent_image_id": "img_0256.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900003.jpg",
+      "parent_image_id": "img_0071.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900004.jpg",
+      "parent_image_id": "img_0067.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900005.jpg",
+      "parent_image_id": "img_0130.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900006.jpg",
+      "parent_image_id": "img_0005.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900007.jpg",
+      "parent_image_id": "img_0098.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900008.jpg",
+      "parent_image_id": "img_0586.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900009.jpg",
+      "parent_image_id": "img_1493.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900010.jpg",
+      "parent_image_id": "img_1129.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900011.jpg",
+      "parent_image_id": "img_0224.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900012.jpg",
+      "parent_image_id": "img_0925.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900013.jpg",
+      "parent_image_id": "img_0731.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900014.jpg",
+      "parent_image_id": "img_0501.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900015.jpg",
+      "parent_image_id": "img_0601.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900016.jpg",
+      "parent_image_id": "img_0640.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900017.jpg",
+      "parent_image_id": "img_1379.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900018.jpg",
+      "parent_image_id": "img_1574.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900019.jpg",
+      "parent_image_id": "img_0054.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900020.jpg",
+      "parent_image_id": "img_1516.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900021.jpg",
+      "parent_image_id": "img_0663.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900022.jpg",
+      "parent_image_id": "img_0606.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900023.jpg",
+      "parent_image_id": "img_1018.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900024.jpg",
+      "parent_image_id": "img_0555.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900025.jpg",
+      "parent_image_id": "img_0002.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900026.jpg",
+      "parent_image_id": "img_0805.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900027.jpg",
+      "parent_image_id": "img_0962.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900028.jpg",
+      "parent_image_id": "img_1335.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900029.jpg",
+      "parent_image_id": "img_1237.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900030.jpg",
+      "parent_image_id": "img_1277.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900031.jpg",
+      "parent_image_id": "img_0867.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900032.jpg",
+      "parent_image_id": "img_0467.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900033.jpg",
+      "parent_image_id": "img_0991.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900034.jpg",
+      "parent_image_id": "img_0386.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900035.jpg",
+      "parent_image_id": "img_0638.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900036.jpg",
+      "parent_image_id": "img_0031.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900037.jpg",
+      "parent_image_id": "img_0255.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900038.jpg",
+      "parent_image_id": "img_0214.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900039.jpg",
+      "parent_image_id": "img_0270.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900040.jpg",
+      "parent_image_id": "img_0007.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900041.jpg",
+      "parent_image_id": "img_0290.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900042.jpg",
+      "parent_image_id": "img_0874.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900043.jpg",
+      "parent_image_id": "img_0961.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900044.jpg",
+      "parent_image_id": "img_0081.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900045.jpg",
+      "parent_image_id": "img_0672.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900046.jpg",
+      "parent_image_id": "img_0057.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900047.jpg",
+      "parent_image_id": "img_0603.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900048.jpg",
+      "parent_image_id": "img_1461.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900049.jpg",
+      "parent_image_id": "img_0911.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900050.jpg",
+      "parent_image_id": "img_0576.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900051.jpg",
+      "parent_image_id": "img_0185.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900052.jpg",
+      "parent_image_id": "img_0596.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900053.jpg",
+      "parent_image_id": "img_0934.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900054.jpg",
+      "parent_image_id": "img_1286.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900055.jpg",
+      "parent_image_id": "img_0502.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900056.jpg",
+      "parent_image_id": "img_0804.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900057.jpg",
+      "parent_image_id": "img_0998.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900058.jpg",
+      "parent_image_id": "img_0093.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900059.jpg",
+      "parent_image_id": "img_0869.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900060.jpg",
+      "parent_image_id": "img_0289.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900061.jpg",
+      "parent_image_id": "img_0226.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900062.jpg",
+      "parent_image_id": "img_1194.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900063.jpg",
+      "parent_image_id": "img_1526.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900064.jpg",
+      "parent_image_id": "img_0217.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900065.jpg",
+      "parent_image_id": "img_0757.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900066.jpg",
+      "parent_image_id": "img_1213.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900067.jpg",
+      "parent_image_id": "img_0420.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900068.jpg",
+      "parent_image_id": "img_1481.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900069.jpg",
+      "parent_image_id": "img_0965.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900070.jpg",
+      "parent_image_id": "img_0003.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900071.jpg",
+      "parent_image_id": "img_0439.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900072.jpg",
+      "parent_image_id": "img_0014.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900073.jpg",
+      "parent_image_id": "img_0563.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900074.jpg",
+      "parent_image_id": "img_0113.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900075.jpg",
+      "parent_image_id": "img_0091.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900076.jpg",
+      "parent_image_id": "img_1145.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900077.jpg",
+      "parent_image_id": "img_0838.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900078.jpg",
+      "parent_image_id": "img_1103.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900079.jpg",
+      "parent_image_id": "img_0722.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900080.jpg",
+      "parent_image_id": "img_1221.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900081.jpg",
+      "parent_image_id": "img_0340.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900082.jpg",
+      "parent_image_id": "img_0921.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900083.jpg",
+      "parent_image_id": "img_1396.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900084.jpg",
+      "parent_image_id": "img_1322.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900085.jpg",
+      "parent_image_id": "img_0538.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900086.jpg",
+      "parent_image_id": "img_0598.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900087.jpg",
+      "parent_image_id": "img_1383.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900088.jpg",
+      "parent_image_id": "img_0015.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900089.jpg",
+      "parent_image_id": "img_0038.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900090.jpg",
+      "parent_image_id": "img_0222.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900091.jpg",
+      "parent_image_id": "img_0218.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900092.jpg",
+      "parent_image_id": "img_0352.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900093.jpg",
+      "parent_image_id": "img_0765.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900094.jpg",
+      "parent_image_id": "img_1257.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900095.jpg",
+      "parent_image_id": "img_0878.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900096.jpg",
+      "parent_image_id": "img_0493.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900097.jpg",
+      "parent_image_id": "img_0944.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900098.jpg",
+      "parent_image_id": "img_1029.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900099.jpg",
+      "parent_image_id": "img_0691.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900100.jpg",
+      "parent_image_id": "img_0305.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900101.jpg",
+      "parent_image_id": "img_0131.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900102.jpg",
+      "parent_image_id": "img_0977.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900103.jpg",
+      "parent_image_id": "img_0528.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900104.jpg",
+      "parent_image_id": "img_1331.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900105.jpg",
+      "parent_image_id": "img_1168.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900106.jpg",
+      "parent_image_id": "img_0101.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900107.jpg",
+      "parent_image_id": "img_0889.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900108.jpg",
+      "parent_image_id": "img_1442.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900109.jpg",
+      "parent_image_id": "img_1400.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900110.jpg",
+      "parent_image_id": "img_1176.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900111.jpg",
+      "parent_image_id": "img_0059.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900112.jpg",
+      "parent_image_id": "img_1229.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900113.jpg",
+      "parent_image_id": "img_0793.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900114.jpg",
+      "parent_image_id": "img_0158.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900115.jpg",
+      "parent_image_id": "img_1124.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900116.jpg",
+      "parent_image_id": "img_0088.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900117.jpg",
+      "parent_image_id": "img_0751.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900118.jpg",
+      "parent_image_id": "img_1487.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900119.jpg",
+      "parent_image_id": "img_0204.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900120.jpg",
+      "parent_image_id": "img_1313.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900121.jpg",
+      "parent_image_id": "img_0935.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900122.jpg",
+      "parent_image_id": "img_0987.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900123.jpg",
+      "parent_image_id": "img_1339.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900124.jpg",
+      "parent_image_id": "img_0893.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900125.jpg",
+      "parent_image_id": "img_0016.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900126.jpg",
+      "parent_image_id": "img_0013.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900127.jpg",
+      "parent_image_id": "img_0513.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900128.jpg",
+      "parent_image_id": "img_0006.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900129.jpg",
+      "parent_image_id": "img_0137.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_900130.jpg",
+      "parent_image_id": "img_1558.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910001.jpg",
+      "parent_image_id": "img_0036.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910002.jpg",
+      "parent_image_id": "img_0237.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910003.jpg",
+      "parent_image_id": "img_0963.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910004.jpg",
+      "parent_image_id": "img_1351.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910005.jpg",
+      "parent_image_id": "img_0745.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910006.jpg",
+      "parent_image_id": "img_1430.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910007.jpg",
+      "parent_image_id": "img_0020.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910008.jpg",
+      "parent_image_id": "img_0079.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910009.jpg",
+      "parent_image_id": "img_0776.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910010.jpg",
+      "parent_image_id": "img_0096.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910011.jpg",
+      "parent_image_id": "img_0486.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910012.jpg",
+      "parent_image_id": "img_0651.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910013.jpg",
+      "parent_image_id": "img_0058.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910014.jpg",
+      "parent_image_id": "img_0042.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910015.jpg",
+      "parent_image_id": "img_0044.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910016.jpg",
+      "parent_image_id": "img_0210.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910017.jpg",
+      "parent_image_id": "img_1578.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910018.jpg",
+      "parent_image_id": "img_0610.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910019.jpg",
+      "parent_image_id": "img_0677.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910020.jpg",
+      "parent_image_id": "img_0611.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910021.jpg",
+      "parent_image_id": "img_0182.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910022.jpg",
+      "parent_image_id": "img_0064.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910023.jpg",
+      "parent_image_id": "img_1443.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910024.jpg",
+      "parent_image_id": "img_0260.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910025.jpg",
+      "parent_image_id": "img_0010.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910026.jpg",
+      "parent_image_id": "img_1045.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910027.jpg",
+      "parent_image_id": "img_0074.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910028.jpg",
+      "parent_image_id": "img_0648.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910029.jpg",
+      "parent_image_id": "img_1525.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910030.jpg",
+      "parent_image_id": "img_0828.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910031.jpg",
+      "parent_image_id": "img_0926.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910032.jpg",
+      "parent_image_id": "img_0154.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910033.jpg",
+      "parent_image_id": "img_0100.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910034.jpg",
+      "parent_image_id": "img_1163.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910035.jpg",
+      "parent_image_id": "img_0660.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910036.jpg",
+      "parent_image_id": "img_1398.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910037.jpg",
+      "parent_image_id": "img_0706.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910038.jpg",
+      "parent_image_id": "img_0043.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910039.jpg",
+      "parent_image_id": "img_0581.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910040.jpg",
+      "parent_image_id": "img_0090.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910041.jpg",
+      "parent_image_id": "img_1510.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910042.jpg",
+      "parent_image_id": "img_1455.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910043.jpg",
+      "parent_image_id": "img_0504.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910044.jpg",
+      "parent_image_id": "img_0685.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910045.jpg",
+      "parent_image_id": "img_0664.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910046.jpg",
+      "parent_image_id": "img_1189.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910047.jpg",
+      "parent_image_id": "img_0055.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910048.jpg",
+      "parent_image_id": "img_1180.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910049.jpg",
+      "parent_image_id": "img_1031.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_910050.jpg",
+      "parent_image_id": "img_1263.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920001.jpg",
+      "parent_image_id": "img_0028.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920002.jpg",
+      "parent_image_id": "img_1527.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920003.jpg",
+      "parent_image_id": "img_0083.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920004.jpg",
+      "parent_image_id": "img_0156.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920005.jpg",
+      "parent_image_id": "img_0144.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920006.jpg",
+      "parent_image_id": "img_1181.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920007.jpg",
+      "parent_image_id": "img_0095.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920008.jpg",
+      "parent_image_id": "img_0859.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920009.jpg",
+      "parent_image_id": "img_1242.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920010.jpg",
+      "parent_image_id": "img_0410.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920011.jpg",
+      "parent_image_id": "img_0409.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920012.jpg",
+      "parent_image_id": "img_0085.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920013.jpg",
+      "parent_image_id": "img_0462.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920014.jpg",
+      "parent_image_id": "img_0250.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920015.jpg",
+      "parent_image_id": "img_0974.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920016.jpg",
+      "parent_image_id": "img_1307.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920017.jpg",
+      "parent_image_id": "img_0223.jpg",
+      "annotation_pairs": 2,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920018.jpg",
+      "parent_image_id": "img_0365.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920019.jpg",
+      "parent_image_id": "img_0118.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920020.jpg",
+      "parent_image_id": "img_0480.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920021.jpg",
+      "parent_image_id": "img_0012.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920022.jpg",
+      "parent_image_id": "img_0027.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920023.jpg",
+      "parent_image_id": "img_0524.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920024.jpg",
+      "parent_image_id": "img_0011.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920025.jpg",
+      "parent_image_id": "img_0443.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920026.jpg",
+      "parent_image_id": "img_0080.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920027.jpg",
+      "parent_image_id": "img_0021.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920028.jpg",
+      "parent_image_id": "img_0099.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920029.jpg",
+      "parent_image_id": "img_0670.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920030.jpg",
+      "parent_image_id": "img_0746.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920031.jpg",
+      "parent_image_id": "img_0697.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920032.jpg",
+      "parent_image_id": "img_0693.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920033.jpg",
+      "parent_image_id": "img_1509.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920034.jpg",
+      "parent_image_id": "img_0975.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920035.jpg",
+      "parent_image_id": "img_0616.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920036.jpg",
+      "parent_image_id": "img_1305.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920037.jpg",
+      "parent_image_id": "img_0073.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920038.jpg",
+      "parent_image_id": "img_0364.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920039.jpg",
+      "parent_image_id": "img_0308.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920040.jpg",
+      "parent_image_id": "img_1266.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920041.jpg",
+      "parent_image_id": "img_1340.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920042.jpg",
+      "parent_image_id": "img_1006.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920043.jpg",
+      "parent_image_id": "img_1378.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920044.jpg",
+      "parent_image_id": "img_0571.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920045.jpg",
+      "parent_image_id": "img_0286.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920046.jpg",
+      "parent_image_id": "img_1298.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920047.jpg",
+      "parent_image_id": "img_0689.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920048.jpg",
+      "parent_image_id": "img_1140.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920049.jpg",
+      "parent_image_id": "img_0030.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    },
+    {
+      "image_id": "img_920050.jpg",
+      "parent_image_id": "img_1057.jpg",
+      "annotation_pairs": 1,
+      "status": "retained"
+    }
+  ]
+}

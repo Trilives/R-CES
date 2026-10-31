@@ -91,10 +91,12 @@ separate upstream crop download.
 predictions in [results/acml2026/](results/acml2026/README.md) reproduce the paper's
 numbers on a CPU. They were generated from the original experimental photographs
 and crops. The upstream image release applies privacy blurring, resizing and JPEG
-encoding; locally reconstructed crops retain the original field of view but can
-lose fine evidence. These released pixels support fresh experiments, with separate
-checkpoint-evidence review where detail matters; they are not byte-identical inputs
-for recreating the frozen predictions.
+encoding. The author compared all 230 annotated crops (covering 334 annotation
+pairs) with their public-parent reconstructions and found no loss of checkpoint
+evidence: all 230 were marked retained, with none changed or uncertain. The
+[review summary](data/upstream/evidence_review.json) records the scope, crop IDs
+and input hashes. Released pixels support fresh experiments; exact numerical
+verification uses the frozen predictions, since the image bytes differ.
 
 ## Other omitted assets
 

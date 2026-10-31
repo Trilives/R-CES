@@ -8,9 +8,10 @@
 - Describe the aggregate as a sufficiency ranking score and link the manuscript
   packages, checksums and change history from the README.
 - Attach the final camera-ready PDF, LaTeX source, supplement and checksums.
-  The PDF and source link this version's Zenodo archive; the submitted supplement
-  bytes are preserved. Bibliographic links and local editorial refinements are
-  included; experimental scores and paper table values are unchanged.
+  The PDF and source link this version's Zenodo archive; the supplement includes
+  the current version metadata, DOI and documentation. Bibliographic links and
+  local editorial refinements are included; experimental scores and paper table
+  values are unchanged.
 
 ## Evidence-review completion — 2026-10-31
 
